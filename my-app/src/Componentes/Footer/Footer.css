@@ -1,0 +1,69 @@
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer .bg-light {
+    border-top: 1px solid #e9ecef;
+}
+
+footer .text-center {
+    margin-top: 1rem;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+    footer {
+        padding: 10px 0;
+    }
+
+    footer h5 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    footer ul li {
+        margin-bottom: 0.25rem;
+    }
+
+    footer p {
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    footer .text-center {
+        margin-top: 0.5rem;
+    }
+
+    .footer-container {
+        text-align: center;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        margin-bottom: 1rem;
+    }
+}

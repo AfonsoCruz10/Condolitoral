@@ -1,0 +1,19 @@
+.home {
+    margin-top: 2rem;
+}
+
+.hero-container {
+    background-color: #f8f9fa;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+.hero-container h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.hero-container p {
+    font-size: 1.2rem;
+}
