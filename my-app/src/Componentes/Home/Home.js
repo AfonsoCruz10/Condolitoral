@@ -1,17 +1,49 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { FaFileInvoiceDollar, FaPhone, FaGavel } from 'react-icons/fa';
 import './Home.css';
 
 function Home() {
+  const navigate = useNavigate();
+
+  const navigateToOrcamento = () => {
+    navigate('/orcamento');
+  };
+
+  const navigateToContactos = () => {
+    navigate('/contactos');
+  };
+
+  const navigateToLegislacao = () => {
+    navigate('/legislacao');
+  };
+
   return (
-    <div className="home">
-      <Container className="hero-container">
-        <h1><strong>Estamos aqui para servi-lo</strong></h1>
-        <p>
-          A Condolitoral administração de condomínio é uma empresa de Administração de Condomínios com mais de 20 anos de actividade a actuar essencialmente nos concelhos de Vila Nova de Gaia, Espinho, Santa Maria da Feira.
-        </p>
-      </Container>
-    </div>
+    <>
+      <div className="hero-image">
+        <div className="overlay"></div>
+      </div>
+      <div className="home-content">
+        <Container className="text-container">
+          <h1><strong>Bem-vindo à Condolitoral</strong></h1>
+          <p>
+            Com mais de 20 anos de experiência, oferecemos serviços de administração de condomínios nos concelhos de Vila Nova de Gaia, Espinho, Santa Maria da Feira.
+          </p>
+          <div className="hero-buttons">
+            <Button variant="primary" onClick={navigateToOrcamento}>
+              <FaFileInvoiceDollar className="icon" /> Pedido de Orçamento
+            </Button>
+            <Button variant="secondary" onClick={navigateToContactos}>
+              <FaPhone className="icon" /> Contactos
+            </Button>
+            <Button variant="info" onClick={navigateToLegislacao}>
+              <FaGavel className="icon" /> Legislação
+            </Button>
+          </div>
+        </Container>
+      </div>
+    </>
   );
 }
 
