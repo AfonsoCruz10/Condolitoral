@@ -29,7 +29,9 @@ function Footer() {
                     </Col>
                 </Row>
                 <hr className="bg-light" />
-                <p className="text-center">© 2025 por Afonso Cruz</p>
+                <p className="text-center">
+                    © 2025 por <a href="https://github.com/AfonsoCruz10" target="_blank" rel="noopener noreferrer" className="text-white">Afonso Cruz</a>
+                </p>
             </Container>
         </footer>
     );

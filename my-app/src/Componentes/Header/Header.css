@@ -19,6 +19,7 @@
 .navbar-brand-custom {
     font-weight: bold;
     color: #dc3545;
+    font-size: 1.5rem; /* Aumenta o tamanho da fonte da marca */
 }
 
 .contact-navbar-container {
@@ -31,7 +32,7 @@
     color: #ff0019;
     text-align: center;
     margin-bottom: 1rem;
-    font-size: 0.875rem; 
+    font-size: 1rem; /* Aumenta o tamanho da fonte das informações de contato */
 }
 
 .contact-item {
@@ -39,7 +40,7 @@
 }
 
 .nav-link {
-    font-size: 1.125rem;
+    font-size: 1.25rem; /* Aumenta o tamanho da fonte dos links de navegação */
     color: #000 !important; 
     text-decoration: none;
 }
@@ -71,7 +72,7 @@
     }
 
     .nav-link {
-        font-size: 1rem;
+        font-size: 1.125rem; /* Ajusta o tamanho da fonte dos links de navegação para dispositivos móveis */
         padding: 0.5rem 0;
     }
 }
