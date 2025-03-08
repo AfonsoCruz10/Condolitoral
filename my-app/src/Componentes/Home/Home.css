@@ -1,67 +1,145 @@
-.hero-image {
+/* HERO SECTION */
+.hero {
     position: relative;
-    background-image: url('../../Assets/predios.jpg'); /* Substitua pelo caminho da sua imagem */
+    width: 100%;
+    height: 60vh;
+    background-image: url('../../Assets/predios.jpg'); /* Substitua pelo caminho da imagem */
     background-size: cover;
-    background-attachment: fixed;
     background-position: center;
-    height: 50vh; /* Ajuste a altura conforme necessário */
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Adiciona uma sobreposição escura */
-}
-
-.home-content {
-    padding: 50px 0;
-    background-color: #f8f9fa; /* Cor de fundo para a seção de texto */
-    text-align: center;
-}
-
-.text-container {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-buttons {
-    margin-top: 20px;
-}
-
-.hero-buttons .btn {
-    margin: 0 10px;
+    background-attachment: fixed; /* Imagem de fundo fixa */
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    color: white;
 }
 
-.hero-buttons .btn .icon {
-    margin-right: 8px;
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
 }
 
-/* Responsive styles for mobile */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.hero-button {
+    background: #dc3545;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.hero-button:hover {
+    background: #a71d2a;
+}
+
+/* SEÇÃO APRESENTAÇÃO */
+.presentation {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+}
+
+.presentation h2 {
+    font-size: 2.5rem;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.presentation p {
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* SEÇÃO SERVIÇOS */
+.services {
+    background: #f1f1f1;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2.5rem;
+    color: #dc3545;
+    margin-bottom: 40px;
+}
+
+.service-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background: white;
+    padding: 40px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+/* SEÇÃO CONTATO */
+.contact-section {
+    height: 35vh; /* Ajuste a altura conforme necessário */
+}
+
+.contact-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .hero-image {
-        height: 30vh; /* Ajuste a altura conforme necessário para dispositivos móveis */
+    .hero-content h1 {
+        font-size: 2rem;
     }
 
-    .home-content {
-        padding: 30px 0;
+    .hero-content p {
+        font-size: 1.1rem;
     }
 
-    .text-container h1 {
-        font-size: 1.5rem;
+    .service-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .text-container p {
-        font-size: 1rem;
-    }
-
-    .hero-buttons .btn {
-        margin: 10px 0;
-        width: 100%;
+    .service-card {
+        width: 90%;
     }
 }
