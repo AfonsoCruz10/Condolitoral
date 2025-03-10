@@ -7,6 +7,7 @@ import Home from './Componentes/Home/Home';
 import Empresa from './Componentes/Empresa/Empresa';
 import Legislation from './Componentes/Legislation/Legislation';
 import PedidoOrcamento from './Componentes/PedidoOrcamento/PedidoOrcamento';
+import Contactos from './Componentes/Contactos/Contactos';
 import Footer from './Componentes/Footer/Footer';
 
 function App() {
@@ -14,10 +15,11 @@ function App() {
     <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/empresa" element={<Empresa />} />
-          <Route path="/legislacao" element={<Legislation />} />
-          <Route path="/orcamento" element={<PedidoOrcamento />} />
+          <Route path="/Condolitoral" element={<Home />} />
+          <Route path="/Condolitoral/empresa" element={<Empresa />} />
+          <Route path="/Condolitoral/legislacao" element={<Legislation />} />
+          <Route path="/Condolitoral/orcamento" element={<PedidoOrcamento />} />
+          <Route path="/Condolitoral/contactos" element={<Contactos />} />
         </Routes>
         <Footer />
     </Router>

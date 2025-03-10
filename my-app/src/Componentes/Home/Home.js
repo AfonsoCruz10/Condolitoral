@@ -14,7 +14,7 @@ function Home() {
         <div className="hero-content">
           <h1>Venha conhecer a nossa experiência.</h1>
           <p>Especialistas em administração de condomínios há mais de 20 anos.</p>
-          <button className="hero-button" onClick={() => navigate('/orcamento')}>
+          <button className="hero-button" onClick={() => navigate('/Condolitoral/orcamento')}>
             <FaFileInvoiceDollar className="icon" /> Pedir orçamento
           </button>
         </div>

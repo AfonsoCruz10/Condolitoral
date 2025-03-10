@@ -1,11 +1,12 @@
 footer {
     background-color: #343a40;
     color: white;
-    padding: 20px 0;
+    padding: 40px 0;
+    text-align: center;
 }
 
 footer h5 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     position: relative;
 }
@@ -32,8 +33,13 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
-footer .bg-light {
-    border-top: 1px solid #e9ecef;
+footer a {
+    color: white;
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
 }
 
 footer .text-center {
@@ -43,11 +49,11 @@ footer .text-center {
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
     footer {
-        padding: 10px 0;
+        padding: 20px 0;
     }
 
     footer h5 {
-        font-size: 1rem;
+        font-size: 1.25rem;
         margin-bottom: 0.5rem;
     }
 

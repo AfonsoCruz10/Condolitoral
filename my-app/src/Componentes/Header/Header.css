@@ -28,11 +28,20 @@
     align-items: center;
 }
 
-.contact-info {
+.header-contact-info {
     color: #ff0019;
     text-align: center;
     margin-bottom: 1rem;
-    font-size: 1rem; /* Aumenta o tamanho da fonte das informações de contato */
+    font-size: 1rem;
+}
+
+.header-contact-info a {
+    color: #ff0019;
+    text-decoration: none; 
+}
+
+.header-contact-info a:hover {
+    text-decoration: underline; 
 }
 
 .contact-item {
@@ -59,7 +68,7 @@
 
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
-    .contact-info {
+    .header-contact-info {
         display: none;
     }
 

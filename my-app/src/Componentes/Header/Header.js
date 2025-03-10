@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink, useLocation } from 'react-router-dom';
+import { FaPhone, FaEnvelope } from 'react-icons/fa';
 import heroImage from '../../Assets/logo.png';
 import './Header.css';
 
@@ -10,7 +11,7 @@ function Header() {
         <>
             <Navbar bg="white" variant="white" expand="lg" className="px-4">
                 <Container className='navbar-container'>
-                    <Navbar.Brand href="/" className="navbar-brand-custom">
+                    <Navbar.Brand href="/Condolitoral" className="navbar-brand-custom">
                         <img
                             src={heroImage}
                             width="250"
@@ -19,20 +20,20 @@ function Header() {
                         />
                     </Navbar.Brand>
                     <div className="contact-navbar-container">
-                        <div className="contact-info">
-                            <span className="contact-item">Contacto: 227 441 656</span>
-                            <span className="contact-item">Email: geral@condolitoral.pt</span>
+                        <div className="header-contact-info">
+                            <span className="contact-item"><FaPhone /> <a href="tel:+351227441656"> +351 227 441 656</a></span>
+                            <span className="contact-item"><FaEnvelope /> <a href="mailto:geral@condolitoral.pt" > geral@condolitoral.pt</a></span>
                         </div>
                         <div className="navbar-toggle-custom">
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         </div>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto">
-                                <Nav.Link as={NavLink} to="/" className={location.pathname === '/' ? "nav-link active-link" : "nav-link"}>Início</Nav.Link>
-                                <Nav.Link as={NavLink} to="/empresa" className={location.pathname === '/empresa' ? "nav-link active-link" : "nav-link"}>Empresa</Nav.Link>
-                                <Nav.Link as={NavLink} to="/legislacao" className={location.pathname === '/legislacao' ? "nav-link active-link" : "nav-link"}>Legislação</Nav.Link>
-                                <Nav.Link as={NavLink} to="/orcamento" className={location.pathname === '/orcamento' ? "nav-link active-link" : "nav-link"}>Pedido de orçamento</Nav.Link>
-                                <Nav.Link as={NavLink} to="/contactos" className={location.pathname === '/contactos' ? "nav-link active-link" : "nav-link"}>Contactos</Nav.Link>
+                                <Nav.Link as={NavLink} to="/Condolitoral" className={location.pathname === '/Condolitoral' ? "nav-link active-link" : "nav-link"}>Início</Nav.Link>
+                                <Nav.Link as={NavLink} to="/Condolitoral/empresa" className={location.pathname === '/Condolitoral/empresa' ? "nav-link active-link" : "nav-link"}>Empresa</Nav.Link>
+                                <Nav.Link as={NavLink} to="/Condolitoral/legislacao" className={location.pathname === '/Condolitoral/legislacao' ? "nav-link active-link" : "nav-link"}>Legislação</Nav.Link>
+                                <Nav.Link as={NavLink} to="/Condolitoral/orcamento" className={location.pathname === '/Condolitoral/orcamento' ? "nav-link active-link" : "nav-link"}>Pedido de orçamento</Nav.Link>
+                                <Nav.Link as={NavLink} to="/Condolitoral/contactos" className={location.pathname === '/Condolitoral/contactos' ? "nav-link active-link" : "nav-link"}>Contactos</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </div>

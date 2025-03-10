@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { FaPhone, FaMobileAlt, FaEnvelope } from 'react-icons/fa';
 import './Footer.css';
 
 function Footer() {
@@ -9,7 +10,6 @@ function Footer() {
                 <Row className="justify-content-center footer-row">
                     <Col md={4} className="text-center footer-col">
                         <h5>Nossos Serviços</h5>
-                        
                         <ul className="list-unstyled">
                             <li>- Apresentação de orçamento</li>
                             <li>- Controle e acompanhamento dos serviços</li>
@@ -20,15 +20,14 @@ function Footer() {
                     </Col>
                     <Col md={4} className="text-center footer-col">
                         <h5>Horário de Funcionamento</h5>
-                        
-                        <p>Seg - Sex: 9:00 - 12:00 e 14:00 - 19:00</p>
+                        <p>Segunda a Sexta:</p>
+                        <p>9:00h às 12:00h e 14:00h às 19:00h</p>
                     </Col>
                     <Col md={4} className="text-center footer-col">
                         <h5>Contacte-nos</h5>
-                        
-                        <p>Telefone: 227 441 656</p>
-                        <p>Telemóvel: 969 081 700</p>
-                        <p>Email: geral@condolitoral.pt</p>
+                        <p><FaPhone /> <a href="tel:+351227441656" className="text-white">+351 227 441 656</a></p>
+                        <p><FaMobileAlt /> <a href="tel:+351969081700" className="text-white">+351 969 081 700</a></p>
+                        <p><FaEnvelope /> <a href="mailto:geral@condolitoral.pt" className="text-white">geral@condolitoral.pt</a></p>
                     </Col>
                 </Row>
                 <hr className="bg-light" />

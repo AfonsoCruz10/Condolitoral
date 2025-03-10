@@ -1,43 +1,77 @@
-/* LEGISLATION CONTAINER */
 .legislation-container {
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 20px auto;
+    max-width: 1000px;
 }
 
 .legislation-container h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #dc3545;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dc3545;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 .legislation-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 30px;
 }
 
-.legislation-container h3 {
-    font-size: 1.2em;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.legislation-container ul {
-    list-style-type: none;
-    padding-left: 0;
+.section-container {
+    margin-bottom: 40px;
     text-align: left;
 }
 
-.legislation-container li {
-    margin-bottom: 10px;
-    font-size: 1em;
+.section-container h3 {
+    font-size: 1.25rem;
+    color: #dc3545;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
 }
 
-/* SECTION CONTAINER */
-.section-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.section-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section-container li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.section-container li::before {
+    content: "•";
+    color: #dc3545;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .legislation-container {
+        padding: 20px 10px;
+    }
+
+    .legislation-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .legislation-container h2 {
+        font-size: 1.25rem;
+    }
+
+    .section-container h3 {
+        font-size: 1rem;
+    }
+
+    .section-container li {
+        font-size: 1rem;
+    }
 }
