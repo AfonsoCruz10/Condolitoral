@@ -1,0 +1,19 @@
+.empresa-container {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empresa-container h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.empresa-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    max-width: 800px;
+    text-align: justify;
+}

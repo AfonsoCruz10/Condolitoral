@@ -46,11 +46,15 @@
 }
 
 .nav-link:hover {
-    color: #4f4f4f; /* Color on hover */
+    color: #4f4f4f !important; /* Color on hover */
 }
 
 .active-link {
     color: red !important; /* Color for the active link */
+}
+
+.active-link:hover{
+    color: #ff0000 !important; /* Color for the active link */
 }
 
 /* Responsive styles for mobile */

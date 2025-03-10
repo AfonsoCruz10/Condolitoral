@@ -9,6 +9,7 @@ function Footer() {
                 <Row className="justify-content-center footer-row">
                     <Col md={4} className="text-center footer-col">
                         <h5>Nossos Serviços</h5>
+                        
                         <ul className="list-unstyled">
                             <li>- Apresentação de orçamento</li>
                             <li>- Controle e acompanhamento dos serviços</li>
@@ -18,11 +19,13 @@ function Footer() {
                         </ul>
                     </Col>
                     <Col md={4} className="text-center footer-col">
-                        <h5>Funcionamento</h5>
+                        <h5>Horário de Funcionamento</h5>
+                        
                         <p>Seg - Sex: 9:00 - 12:00 e 14:00 - 19:00</p>
                     </Col>
                     <Col md={4} className="text-center footer-col">
                         <h5>Contacte-nos</h5>
+                        
                         <p>Telefone: 227 441 656</p>
                         <p>Telemóvel: 969 081 700</p>
                         <p>Email: geral@condolitoral.pt</p>

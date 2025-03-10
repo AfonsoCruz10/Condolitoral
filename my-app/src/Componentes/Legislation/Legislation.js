@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import ContactSection from '../ContactSection/ContactSection';
+import HeroSection from '../HeroSection/HeroSection';
 import './Legislation.css';
-import { FaPhone } from 'react-icons/fa';
 
 const Section = ({ title, articles }) => (
     <div className="section-container">
@@ -15,18 +15,13 @@ const Section = ({ title, articles }) => (
 );
 
 function Legislation() {
-    const navigate = useNavigate();
 
     return (
         <div>
             {/* HERO SECTION */}
-            <div className="hero_legislation">
-                <div className="hero-overlay"></div>
-                <div className="hero-content">
-                    <h1>LEGISLAÇÃO</h1>
-                </div>
-            </div>
+            <HeroSection title="LEGISLAÇÃO" />
 
+            {/*  LEGISLATION CONTAINER */}
             <div className="legislation-container">
                 <h1>Capítulo VI - Propriedade horizontal</h1>
                 <h2>Direitos e deveres dos condóminos (Artigos 1414.º a 1438.º-A do Código Civil)</h2>
@@ -86,15 +81,7 @@ function Legislation() {
             </div>
 
             {/* SEÇÃO CONTATO */}
-            <div className="hero contact-section">
-                <div className="hero-overlay"></div>
-                <div className="hero-content">
-                    <h2>Tem interesse nos nossos serviços?</h2>
-                    <button className="hero-button" onClick={() => navigate('/contactos')}>
-                        <FaPhone className="icon" /> CONTACTE-NOS
-                    </button>
-                </div>
-            </div>
+            <ContactSection />
         </div>
     );
 }

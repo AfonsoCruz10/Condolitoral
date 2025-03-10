@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Componentes/Header/Header';
 import Home from './Componentes/Home/Home';
+import Empresa from './Componentes/Empresa/Empresa';
 import Legislation from './Componentes/Legislation/Legislation';
+import PedidoOrcamento from './Componentes/PedidoOrcamento/PedidoOrcamento';
 import Footer from './Componentes/Footer/Footer';
 
 function App() {
@@ -13,8 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/empresa" element={<Empresa />} />
           <Route path="/legislacao" element={<Legislation />} />
-          
+          <Route path="/orcamento" element={<PedidoOrcamento />} />
         </Routes>
         <Footer />
     </Router>
