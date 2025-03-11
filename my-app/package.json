@@ -1,7 +1,7 @@
 {
   "name": "condolitoral",
   "version": "0.1.0",
-  "homepage": "https://AfonsoCruz10.github.io/Condolitoral",
+  "homepage": "https://www.condolitoral.pt",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^3.6.0",

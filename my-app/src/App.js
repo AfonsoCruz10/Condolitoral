@@ -15,11 +15,11 @@ function App() {
     <Router>
         <Header />
         <Routes>
-          <Route path="/Condolitoral" element={<Home />} />
-          <Route path="/Condolitoral/empresa" element={<Empresa />} />
-          <Route path="/Condolitoral/legislacao" element={<Legislation />} />
-          <Route path="/Condolitoral/orcamento" element={<PedidoOrcamento />} />
-          <Route path="/Condolitoral/contactos" element={<Contactos />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/empresa" element={<Empresa />} />
+          <Route path="/legislacao" element={<Legislation />} />
+          <Route path="/orcamento" element={<PedidoOrcamento />} />
+          <Route path="/contactos" element={<Contactos />} />
         </Routes>
         <Footer />
     </Router>

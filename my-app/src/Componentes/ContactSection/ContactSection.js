@@ -11,7 +11,7 @@ function ContactSection() {
             <div className="hero-overlay"></div>
             <div className="hero-content">
                 <h2>Tem interesse nos nossos serviços?</h2>
-                <button className="hero-button" onClick={() => navigate('/Condolitoral/contactos')}>
+                <button className="hero-button" onClick={() => navigate('/contactos')}>
                     <FaPhone className="icon" /> CONTACTE-NOS
                 </button>
             </div>
