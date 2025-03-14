@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HeroSection from '../HeroSection/HeroSection';
 import ContactSection from '../ContactSection/ContactSection';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './PedidoOrcamento.css';
 
 function PedidoOrcamento() {
+    const [formData, setFormData] = useState({
+        nome: "",
+        telefone: "",
+        email: "",
+        nomeCondominio: "",
+        morada: "",
+        localidade: "",
+        idadeEdificio: "",
+        numFracoes: "",
+        numPisos: "",
+        outrasInformacoes: ""
+    });
+
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+   const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        toast.error("Falha ao enviar o email.(Funcionalidade não implementada)", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,   
+        });
+    };
+
     return (
         <div>
             {/* HERO SECTION */}
@@ -13,18 +48,18 @@ function PedidoOrcamento() {
             {/* PEDIDO DE ORÇAMENTO CONTAINER */}
             <Container className="pedido-orcamento-container">
                 <h1>Dados pessoais</h1>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Row>
                         <Col md={6}>
                             <Form.Group controlId="nome">
                                 <Form.Label>Nome</Form.Label>
-                                <Form.Control type="text" placeholder="Nome" />
+                                <Form.Control type="text" placeholder="Nome" value={formData.nome} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                         <Col md={6}>
                             <Form.Group controlId="telefone">
                                 <Form.Label>Telefone</Form.Label>
-                                <Form.Control type="text" placeholder="Telefone" />
+                                <Form.Control type="text" placeholder="Telefone" value={formData.telefone} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -32,7 +67,7 @@ function PedidoOrcamento() {
                         <Col md={12}>
                             <Form.Group controlId="email">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Email" />
+                                <Form.Control type="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -40,15 +75,15 @@ function PedidoOrcamento() {
                     <h1>Informação geral do condomínio</h1>
                     <Row>
                         <Col md={6}>
-                            <Form.Group controlId="nome-condominio">
+                            <Form.Group controlId="nomeCondominio">
                                 <Form.Label>Nome</Form.Label>
-                                <Form.Control type="text" placeholder="Nome do condomínio" />
+                                <Form.Control type="text" placeholder="Nome do condomínio" value={formData.nomeCondominio} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                         <Col md={6}>
                             <Form.Group controlId="morada">
                                 <Form.Label>Morada</Form.Label>
-                                <Form.Control type="text" placeholder="Morada" />
+                                <Form.Control type="text" placeholder="Morada" value={formData.morada} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -56,39 +91,41 @@ function PedidoOrcamento() {
                         <Col md={6}>
                             <Form.Group controlId="localidade">
                                 <Form.Label>Localidade</Form.Label>
-                                <Form.Control type="text" placeholder="Localidade" />
+                                <Form.Control type="text" placeholder="Localidade" value={formData.localidade} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                         <Col md={6}>
-                            <Form.Group controlId="idade-edificio">
+                            <Form.Group controlId="idadeEdificio">
                                 <Form.Label>Idade do edifício</Form.Label>
-                                <Form.Control type="text" placeholder="Idade do edifício" />
+                                <Form.Control type="text" placeholder="Idade do edifício" value={formData.idadeEdificio} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={6}>
-                            <Form.Group controlId="num-fracoes">
+                            <Form.Group controlId="numFracoes">
                                 <Form.Label>Nº de Frações</Form.Label>
-                                <Form.Control type="text" placeholder="Nº de Frações" />
+                                <Form.Control type="text" placeholder="Nº de Frações" value={formData.numFracoes} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                         <Col md={6}>
-                            <Form.Group controlId="num-pisos">
+                            <Form.Group controlId="numPisos">
                                 <Form.Label>Nº de pisos</Form.Label>
-                                <Form.Control type="text" placeholder="Nº de pisos" />
+                                <Form.Control type="text" placeholder="Nº de pisos" value={formData.numPisos} onChange={handleChange} required />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={12}>
-                            <Form.Group controlId="outras-informacoes">
+                            <Form.Group controlId="outrasInformacoes">
                                 <Form.Label>Outras informações</Form.Label>
-                                <Form.Control as="textarea" rows={3} placeholder="Outras informações" />
+                                <Form.Control as="textarea" rows={3} placeholder="Outras informações" value={formData.outrasInformacoes} onChange={handleChange} />
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Button variant="danger" type="submit">Enviar</Button>
+                    <Button variant="danger" type="submit" disabled={loading}>
+                        {loading ? 'Enviando...' : 'Enviar'}
+                    </Button>
                 </Form>
             </Container>
 

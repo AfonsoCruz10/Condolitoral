@@ -1,20 +1,70 @@
 .not-found {
-    text-align: center;
-    padding: 50px;
-  }
-  
+  position: relative;
+  width: 100%;
+  height: calc(100vh);
+  background-image: url('../../Assets/predios.jpg'); /* Substitua pelo caminho da imagem */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Imagem de fundo fixa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out; /* Adiciona animação de fade-in */
+}
+
+
+
+.not-found-content {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  z-index: 2;
+}
+
+.not-found-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.not-found h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #6c757d;
+}
+
+.not-found-button {
+  background: #dc3545;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; /* Adiciona transição para o background e transform */
+}
+
+.not-found-button:hover {
+  background: #a71d2a;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
   .not-found h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+    font-size: 2rem;
   }
-  
+
   .not-found p {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.1rem;
   }
-  
-  .not-found-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-  }
+}

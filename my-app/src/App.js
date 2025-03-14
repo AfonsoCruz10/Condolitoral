@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Componentes/Header/Header';
@@ -11,10 +11,19 @@ import Contactos from './Componentes/Contactos/Contactos';
 import Footer from './Componentes/Footer/Footer';
 import NotFound from './Componentes/NotFound/NotFound';
 
-function App() {
+function Layout() {
+  const location = useLocation(); // Obtém a rota atual
+
+  // Verifica se a rota é "Not Found"
+  const isNotFound = location.pathname !== '/' &&
+                     location.pathname !== '/empresa' &&
+                     location.pathname !== '/legislacao' &&
+                     location.pathname !== '/orcamento' &&
+                     location.pathname !== '/contactos';
+
   return (
-    <Router>
-      <Header />
+    <>
+      {!isNotFound && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/empresa" element={<Empresa />} />
@@ -23,7 +32,15 @@ function App() {
         <Route path="/contactos" element={<Contactos />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {!isNotFound && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Layout />
     </Router>
   );
 }
