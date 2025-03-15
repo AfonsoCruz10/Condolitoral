@@ -3,8 +3,10 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaMobileAlt } from 'react-icons/fa';
 import HeroSection from '../HeroSection/HeroSection';
 import { toast } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 import 'react-toastify/dist/ReactToastify.css';
 import './Contactos.css';
+
 
 function Contactos() {
     const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ function Contactos() {
         phone: "",
         message: "",
     });
+    const [isSending, setIsSending] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,19 +23,34 @@ function Contactos() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        toast.error("Falha ao enviar o email.(Funcionalidade não implementada)", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,   
-        });
-    };
+        setIsSending(true);
 
-   
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || "default_service_id";
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID_CONTACT || "default_template_id";
+        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
+
+        console.log(serviceID, templateID);
+
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            message: formData.message
+        };
+
+        emailjs.send(serviceID, templateID, templateParams, publicKey)
+            .then((response) => {
+                toast.success("Mensagem enviada com sucesso!", { position: "top-right" });
+                setFormData({ name: "", email: "", phone: "", message: "" });
+            })
+            .catch((error) => {
+                console.error("Erro ao enviar mensagem:", error);
+                toast.error("Erro ao enviar mensagem. Tente novamente.", { position: "top-right" });
+            })
+            .finally(() => {
+                setIsSending(false);
+            });
+    };
 
     return (
         <>
@@ -88,17 +106,29 @@ function Contactos() {
                                     required 
                                 />
                             </Form.Group>
-                            <Button variant="danger" type="submit" className="mr-2">Enviar</Button>
-                            <Button variant="secondary" type="reset" onClick={() => setFormData({ name: "", email: "", phone: "", message: "" })}>Limpar</Button>
+                            <Button 
+                                variant="danger" 
+                                type="submit" 
+                                disabled={isSending} 
+                            >
+                                Enviar
+                            </Button>
+                            <Button 
+                                variant="secondary" 
+                                type="reset" 
+                                onClick={() => setFormData({ name: "", email: "", phone: "", message: "" })}
+                                disabled={isSending}
+                            >
+                                Limpar
+                            </Button>
                         </Form>
-                    
                     </Col>
                     <Col md={4} className="contact-info">
                         <div>
                             <h2>Contactos</h2>
                             <p><FaPhone /> <a href="tel:+351227441656">+351 227 441 656</a></p>
                             <p><FaMobileAlt /> <a href="tel:+351969081700">+351 969 081 700</a></p>
-                            <p><FaEnvelope /> <a href="mailto:geral@condolitoral.pt" > geral@condolitoral.pt</a></p>
+                            <p><FaEnvelope /> <a href="mailto:geral@condolitoral.pt">geral@condolitoral.pt</a></p>
                             <p><FaMapMarkerAlt /> Rua Santa Maria nº 999 loja 3, 4535 - 401 Santa Maria de lamas</p>
                         </div>
                     </Col>

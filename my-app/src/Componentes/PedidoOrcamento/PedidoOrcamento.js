@@ -3,8 +3,10 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HeroSection from '../HeroSection/HeroSection';
 import ContactSection from '../ContactSection/ContactSection';
 import { toast } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 import 'react-toastify/dist/ReactToastify.css';
 import './PedidoOrcamento.css';
+
 
 function PedidoOrcamento() {
     const [formData, setFormData] = useState({
@@ -26,18 +28,43 @@ function PedidoOrcamento() {
         setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
-   const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
+
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || "default_service_id";
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO || "default_template_id";
+        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
+        console.log(serviceID, templateID);
+
         
-        toast.error("Falha ao enviar o email.(Funcionalidade não implementada)", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,   
-        });
+        const templateParams = {
+            from_name: formData.nome,
+            from_email: formData.email,
+            phone: formData.telefone,
+            nomeCondominio: formData.nomeCondominio,
+            morada: formData.morada,
+            localidade: formData.localidade,
+            idadeEdificio: formData.idadeEdificio,
+            numFracoes: formData.numFracoes,
+            numPisos: formData.numPisos,
+            outrasInformacoes: formData.outrasInformacoes,
+        };
+
+        emailjs.send(serviceID, templateID, templateParams, publicKey)
+            .then((response) => {
+                toast.success("Pedido de Orçamento enviado com sucesso!", { position: "top-right" });
+                setFormData({
+                    nome: "", telefone: "", email: "", nomeCondominio: "", morada: "", 
+                    localidade: "", idadeEdificio: "", numFracoes: "", numPisos: "", outrasInformacoes: ""
+                });
+            })
+            .catch((error) => {
+                toast.error("Erro ao enviar pedido de orçamento. Tente novamente.", { position: "top-right" });
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return (
