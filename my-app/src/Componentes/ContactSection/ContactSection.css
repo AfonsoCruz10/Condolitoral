@@ -1,42 +1,42 @@
 .hero.contact-section {
-    height: 35vh; /* Ajuste a altura conforme necessário */
-    color: white;
+  height: 35vh; /* Ajuste a altura conforme necessário */
+  color: white;
 }
 
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-button {
-    background: #dc3545;
-    color: white;
-    padding: 12px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: center; /* Centraliza o conteúdo do botão */
+  background: #dc3545;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center; /* Centraliza o conteúdo do botão */
 }
 
 .hero-button:hover {
-    background: #a71d2a;
+  background: #a71d2a;
 }

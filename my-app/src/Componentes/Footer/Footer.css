@@ -1,85 +1,85 @@
 footer {
-    background-color: #343a40;
-    color: white;
-    padding: 40px 0;
-    text-align: center;
+  background-color: #343a40;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
 }
 
 footer h5 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    position: relative;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
 footer h5::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 2px;
-    background: white;
-    margin: 10px auto 20px auto;
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: white;
+  margin: 10px auto 20px auto;
 }
 
 footer ul {
-    padding-left: 0;
-    list-style: none;
+  padding-left: 0;
+  list-style: none;
 }
 
 footer ul li {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 footer p {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 footer a {
-    color: white;
-    text-decoration: none; /* Remove o sublinhado dos links */
+  color: white;
+  text-decoration: none; /* Remove o sublinhado dos links */
 }
 
 footer a:hover {
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
 }
 
 footer .text-center {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
-    footer {
-        padding: 20px 0;
-    }
+  footer {
+    padding: 20px 0;
+  }
 
-    footer h5 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
+  footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
 
-    footer ul li {
-        margin-bottom: 0.25rem;
-    }
+  footer ul li {
+    margin-bottom: 0.25rem;
+  }
 
-    footer p {
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
-    }
+  footer p {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
 
-    footer .text-center {
-        margin-top: 0.5rem;
-    }
+  footer .text-center {
+    margin-top: 0.5rem;
+  }
 
-    .footer-container {
-        text-align: center;
-    }
+  .footer-container {
+    text-align: center;
+  }
 
-    .footer-row {
-        flex-direction: column;
-        align-items: center;
-    }
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .footer-col {
-        margin-bottom: 1rem;
-    }
+  .footer-col {
+    margin-bottom: 1rem;
+  }
 }

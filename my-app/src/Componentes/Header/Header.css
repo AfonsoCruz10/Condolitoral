@@ -1,91 +1,96 @@
 /* Styles for the Header component */
 
-.navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+.navbar .container,
+.navbar .container-fluid,
+.navbar .container-lg,
+.navbar .container-md,
+.navbar .container-sm,
+.navbar .container-xl {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .navbar {
-    padding: 1rem 0;
-    box-shadow: 0 4px 2px -2px gray;
+  padding: 1rem 0;
+  box-shadow: 0 4px 2px -2px gray;
 }
 
 .navbar-brand-custom {
-    font-weight: bold;
-    color: #dc3545;
-    font-size: 1.5rem; /* Aumenta o tamanho da fonte da marca */
+  font-weight: bold;
+  color: #dc3545;
+  font-size: 1.5rem; /* Aumenta o tamanho da fonte da marca */
 }
 
 .contact-navbar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header-contact-info {
-    color: #ff0019;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1rem;
+  color: #ff0019;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .header-contact-info a {
-    color: #ff0019;
-    text-decoration: none; 
+  color: #ff0019;
+  text-decoration: none;
 }
 
 .header-contact-info a:hover {
-    text-decoration: underline; 
+  text-decoration: underline;
 }
 
 .contact-item {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .nav-link {
-    font-size: 1.25rem; /* Aumenta o tamanho da fonte dos links de navegação */
-    color: #000 !important; 
-    text-decoration: none;
+  font-size: 1.25rem; /* Aumenta o tamanho da fonte dos links de navegação */
+  color: #000 !important;
+  text-decoration: none;
 }
 
 .nav-link:hover {
-    color: #4f4f4f !important; /* Color on hover */
+  color: #4f4f4f !important; /* Color on hover */
 }
 
 .active-link {
-    color: red !important; /* Color for the active link */
+  color: red !important; /* Color for the active link */
 }
 
-.active-link:hover{
-    color: #ff0000 !important; /* Color for the active link */
+.active-link:hover {
+  color: #ff0000 !important; /* Color for the active link */
 }
 
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
-    .header-contact-info {
-        display: none;
-    }
+  .header-contact-info {
+    display: none;
+  }
 
-    .navbar-brand-custom {
-        display: inline-block;
-    }
+  .navbar-brand-custom {
+    display: inline-block;
+  }
 
-    .navbar-toggle-custom {
-        display: inline-block;
-    }
+  .navbar-toggle-custom {
+    display: inline-block;
+  }
 
-    .navbar-collapse {
-        text-align: center;
-    }
+  .navbar-collapse {
+    text-align: center;
+  }
 
-    .nav-link {
-        font-size: 1.125rem; /* Ajusta o tamanho da fonte dos links de navegação para dispositivos móveis */
-        padding: 0.5rem 0;
-    }
+  .nav-link {
+    font-size: 1.125rem; /* Ajusta o tamanho da fonte dos links de navegação para dispositivos móveis */
+    padding: 0.5rem 0;
+  }
 }
