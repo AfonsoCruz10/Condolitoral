@@ -20,13 +20,14 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: my-app/package-lock.json  # Aponta corretamente para o package-lock.json
 
       - name: Install dependencies
-        working-directory: ./my-app  
+        working-directory: ./my-app  # Ajustado para o diretório correto
         run: npm install
 
       - name: Build the project
-        working-directory: ./my-app  
+        working-directory: ./my-app  # Ajustado para o diretório correto
         env:
           REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.REACT_APP_EMAILJS_SERVICE_ID }}
           REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO: ${{ secrets.REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO }}
@@ -38,6 +39,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./my-app/build  
+          publish_dir: ./my-app/build  # Ajustado para apontar para o diretório correto
           keep_files: true
           commit_message: "Deploy React App to GitHub Pages"
