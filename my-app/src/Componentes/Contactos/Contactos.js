@@ -104,6 +104,7 @@ function Contactos() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      required
                     />
                   </Form.Group>
                 </Col>
@@ -156,10 +157,11 @@ function Contactos() {
         </Row>
         <div className="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.9131133556616!2d-8.572248924016154!3d40.983383371353995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2478b55bd55b21%3A0xa6dee7ce8cb9c4b0!2sCondolitoral-administra%C3%A7%C3%A3o%20De%20Condom%C3%ADnios%20Lda!5e0!3m2!1spt-PT!2spt!4v1741625964880!5m2!1spt-PT!2spt"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.9131133556616!2d-8.572248924016154!3d40.983383371353995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2478b55bd55b21%3A0xa6dee7ce8cb9c4b0!2sCondolitoral-administra%C3%A7%C3%A3o%20De%20Condom%C3%ADnios%20Lda!5e0!3m2!1spt-PT!2spt"
             allowFullScreen=""
             loading="lazy"
             title="Google Maps"
+            style={{ borderRadius: 10 }}
           ></iframe>
         </div>
       </Container>

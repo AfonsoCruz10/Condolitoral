@@ -56,7 +56,7 @@ function Home() {
           </div>
           <div className="service-card">
             <FaBalanceScale className="service-icon" />
-            <h3>Apoio Jurídico aos Condôminos</h3>
+            <h3>Apoio Jurídico aos Condóminos</h3>
             <p>Suporte jurídico para os moradores do condomínio.</p>
           </div>
           <div className="service-card">

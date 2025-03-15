@@ -142,7 +142,6 @@ function PedidoOrcamento() {
                   placeholder="Nome do condomínio"
                   value={formData.nomeCondominio}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>
@@ -154,7 +153,6 @@ function PedidoOrcamento() {
                   placeholder="Morada"
                   value={formData.morada}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>
@@ -168,7 +166,6 @@ function PedidoOrcamento() {
                   placeholder="Localidade"
                   value={formData.localidade}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>
@@ -180,7 +177,6 @@ function PedidoOrcamento() {
                   placeholder="Idade do edifício"
                   value={formData.idadeEdificio}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>
@@ -194,7 +190,6 @@ function PedidoOrcamento() {
                   placeholder="Nº de Frações"
                   value={formData.numFracoes}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>
@@ -206,7 +201,6 @@ function PedidoOrcamento() {
                   placeholder="Nº de pisos"
                   value={formData.numPisos}
                   onChange={handleChange}
-                  required
                 />
               </Form.Group>
             </Col>

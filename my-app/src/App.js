@@ -15,11 +15,11 @@ import PedidoOrcamento from "./Componentes/PedidoOrcamento/PedidoOrcamento";
 import Contactos from "./Componentes/Contactos/Contactos";
 import Footer from "./Componentes/Footer/Footer";
 import NotFound from "./Componentes/NotFound/NotFound";
+import ScrollToTopButton from "./Componentes/ScrollToTopButton/ScrollToTopButton";
 
 function Layout() {
-  const location = useLocation(); // Obtém a rota atual
+  const location = useLocation();
 
-  // Verifica se a rota é "Not Found"
   const isNotFound =
     location.pathname !== "/" &&
     location.pathname !== "/empresa" &&
@@ -39,6 +39,7 @@ function Layout() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!isNotFound && <Footer />}
+      <ScrollToTopButton />
     </>
   );
 }
