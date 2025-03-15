@@ -13,21 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
+          persist-credentials: false  # Evita conflitos com GITHUB_TOKEN
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: my-app/package-lock.json  # Aponta corretamente para o package-lock.json
 
       - name: Install dependencies
-        working-directory: ./my-app  # Ajustado para o diretório correto
+        working-directory: ./my-app
         run: npm install
 
       - name: Build the project
-        working-directory: ./my-app  # Ajustado para o diretório correto
+        working-directory: ./my-app
         env:
           REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.REACT_APP_EMAILJS_SERVICE_ID }}
           REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO: ${{ secrets.REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO }}
@@ -39,6 +37,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./my-app/build  # Ajustado para apontar para o diretório correto
-          keep_files: true
-          commit_message: "Deploy React App to GitHub Pages"
+          publish_dir: ./my-app/build
+          publish_branch: gh-pages  # Garante que o push seja para a branch correta
+          force_orphan: true  # Garante que os arquivos antigos não causem conflitos
