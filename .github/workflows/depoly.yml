@@ -12,16 +12,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
+        working-directory: ./my-app  
         run: npm install
 
       - name: Build the project
+        working-directory: ./my-app  
         env:
           REACT_APP_EMAILJS_SERVICE_ID: ${{ secrets.REACT_APP_EMAILJS_SERVICE_ID }}
           REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO: ${{ secrets.REACT_APP_EMAILJS_TEMPLATE_ID_PEDIDO_ORCAMENTO }}
@@ -33,6 +38,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./my-app/build  
           keep_files: true
           commit_message: "Deploy React App to GitHub Pages"
