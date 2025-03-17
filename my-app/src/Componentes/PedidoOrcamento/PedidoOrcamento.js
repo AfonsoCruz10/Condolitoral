@@ -22,13 +22,47 @@ function PedidoOrcamento() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.nome) newErrors.nome = "Preencha o nome!";
+    if (!formData.telefone) newErrors.telefone = "Preencha o telefone!";
+    if (!formData.email) newErrors.email = "Preencha o e-mail!";
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const resetForm = () => {
+    setFormData({
+      nome: "",
+      telefone: "",
+      email: "",
+      nomeCondominio: "",
+      morada: "",
+      localidade: "",
+      idadeEdificio: "",
+      numFracoes: "",
+      numPisos: "",
+      outrasInformacoes: "",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      toast.info("Por favor, preencha todos os campos obrigatórios.", {
+        position: "top-right",
+      });
+      return;
+    }
+
     setLoading(true);
 
     const serviceID =
@@ -38,7 +72,6 @@ function PedidoOrcamento() {
       "default_template_id";
     const publicKey =
       process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
-    console.log(serviceID, templateID);
 
     const templateParams = {
       from_name: formData.nome,
@@ -55,24 +88,14 @@ function PedidoOrcamento() {
 
     emailjs
       .send(serviceID, templateID, templateParams, publicKey)
-      .then((response) => {
+      .then(() => {
         toast.success("Pedido de Orçamento enviado com sucesso!", {
           position: "top-right",
         });
-        setFormData({
-          nome: "",
-          telefone: "",
-          email: "",
-          nomeCondominio: "",
-          morada: "",
-          localidade: "",
-          idadeEdificio: "",
-          numFracoes: "",
-          numPisos: "",
-          outrasInformacoes: "",
-        });
+        resetForm();
+        setErrors({});
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Erro ao enviar pedido de orçamento. Tente novamente.", {
           position: "top-right",
         });
@@ -80,6 +103,11 @@ function PedidoOrcamento() {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  const handleClear = () => {
+    resetForm();
+    setErrors({});
   };
 
   return (
@@ -94,40 +122,48 @@ function PedidoOrcamento() {
           <Row>
             <Col md={6}>
               <Form.Group controlId="nome">
-                <Form.Label>Nome</Form.Label>
+                <Form.Label>
+                  Nome <span className="required">*</span>
+                </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Nome"
                   value={formData.nome}
                   onChange={handleChange}
-                  required
+                  className={errors.nome ? "input-error" : ""}
                 />
+                {errors.nome && <p className="error-text">{errors.nome}</p>}
               </Form.Group>
             </Col>
             <Col md={6}>
               <Form.Group controlId="telefone">
-                <Form.Label>Telefone</Form.Label>
+                <Form.Label>
+                  Telefone <span className="required">*</span>
+                </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Telefone"
                   value={formData.telefone}
                   onChange={handleChange}
-                  required
+                  className={errors.telefone ? "input-error" : ""}
                 />
+                {errors.telefone && (
+                  <p className="error-text">{errors.telefone}</p>
+                )}
               </Form.Group>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>
+                  Email <span className="required">*</span>
+                </Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  className={errors.email ? "input-error" : ""}
                 />
+                {errors.email && <p className="error-text">{errors.email}</p>}
               </Form.Group>
             </Col>
           </Row>
@@ -139,7 +175,6 @@ function PedidoOrcamento() {
                 <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Nome do condomínio"
                   value={formData.nomeCondominio}
                   onChange={handleChange}
                 />
@@ -150,7 +185,6 @@ function PedidoOrcamento() {
                 <Form.Label>Morada</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Morada"
                   value={formData.morada}
                   onChange={handleChange}
                 />
@@ -163,7 +197,6 @@ function PedidoOrcamento() {
                 <Form.Label>Localidade</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Localidade"
                   value={formData.localidade}
                   onChange={handleChange}
                 />
@@ -174,7 +207,6 @@ function PedidoOrcamento() {
                 <Form.Label>Idade do edifício</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Idade do edifício"
                   value={formData.idadeEdificio}
                   onChange={handleChange}
                 />
@@ -187,7 +219,6 @@ function PedidoOrcamento() {
                 <Form.Label>Nº de Frações</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Nº de Frações"
                   value={formData.numFracoes}
                   onChange={handleChange}
                 />
@@ -198,7 +229,6 @@ function PedidoOrcamento() {
                 <Form.Label>Nº de pisos</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Nº de pisos"
                   value={formData.numPisos}
                   onChange={handleChange}
                 />
@@ -212,7 +242,6 @@ function PedidoOrcamento() {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  placeholder="Outras informações"
                   value={formData.outrasInformacoes}
                   onChange={handleChange}
                 />
@@ -221,6 +250,15 @@ function PedidoOrcamento() {
           </Row>
           <Button variant="danger" type="submit" disabled={loading}>
             {loading ? "Enviando..." : "Enviar"}
+          </Button>
+          <Button
+            variant="secondary"
+            type="button"
+            onClick={handleClear}
+            disabled={loading}
+            className="ml-2"
+          >
+            Limpar
           </Button>
         </Form>
       </Container>

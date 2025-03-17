@@ -7,9 +7,9 @@
 
 .legislation-container h1 {
   font-size: 2rem;
-  color: #dc3545;
+  color: #ff1b1e;
   margin-bottom: 20px;
-  border-bottom: 2px solid #dc3545;
+  border-bottom: 2px solid #ff1b1e;
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -27,7 +27,7 @@
 
 .section-container h3 {
   font-size: 1.25rem;
-  color: #dc3545;
+  color: #ff1b1e;
   margin-bottom: 15px;
   padding-bottom: 5px;
 }
@@ -47,7 +47,7 @@
 
 .section-container li::before {
   content: "•";
-  color: #dc3545;
+  color: #ff1b1e;
   position: absolute;
   left: 0;
   font-size: 1.5rem;

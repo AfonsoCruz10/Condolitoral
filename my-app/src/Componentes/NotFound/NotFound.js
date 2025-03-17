@@ -10,12 +10,12 @@ function NotFound() {
       <div className="hero-overlay"></div>
       <div className="not-found-content">
         <img
-          src={require("../../Assets/logo_edited.png")}
+          src={require("../../Assets/logo.png")}
           alt="Página Não Encontrada"
           className="not-found-image"
         />
-        <h1>Página Não Encontrada</h1>
-        <p>A página que você está à procura não existe.</p>
+        <h1>Oops! Página Não Encontrada</h1>
+        <p>A página que você está procurando não existe ou foi movida.</p>
         <button className="not-found-button" onClick={() => navigate("/")}>
           Voltar para a Página Inicial
         </button>

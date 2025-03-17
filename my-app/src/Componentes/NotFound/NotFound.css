@@ -1,61 +1,87 @@
+/* CONTAINER DA PÁGINA */
 .not-found {
   position: relative;
   width: 100%;
-  height: calc(100vh);
-  background-image: url('../../Assets/predios.jpg'); /* Substitua pelo caminho da imagem */
+  height: 100vh;
+  background-image: url("../../Assets/predios.jpg"); /* Imagem de fundo */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Imagem de fundo fixa */
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  animation: fadeIn 1s ease-in-out; /* Adiciona animação de fade-in */
+  animation: fadeIn 1s ease-in-out; /* Efeito de transição */
 }
 
-
-
+/* CONTEÚDO CENTRAL */
 .not-found-content {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   max-width: 600px;
   width: 100%;
   z-index: 2;
+  animation: slideIn 1s ease-in-out;
 }
 
+/* IMAGEM */
 .not-found-image {
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
 
+/* TÍTULO */
 .not-found h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #343a40;
+  color: #333;
 }
 
+/* PARÁGRAFO */
 .not-found p {
   font-size: 1.2rem;
   margin-bottom: 30px;
   color: #6c757d;
 }
 
+/* BOTÃO DE RETORNO */
 .not-found-button {
-  background: #dc3545;
+  background: #ff1b1e;
   color: white;
   padding: 12px 30px;
   font-size: 1.2rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease; /* Adiciona transição para o background e transform */
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .not-found-button:hover {
-  background: #a71d2a;
+  background: #c91517;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* RESPONSIVIDADE */
@@ -66,5 +92,10 @@
 
   .not-found p {
     font-size: 1.1rem;
+  }
+
+  .not-found-button {
+    font-size: 1rem;
+    padding: 10px 20px;
   }
 }

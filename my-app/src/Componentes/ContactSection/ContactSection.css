@@ -23,7 +23,7 @@
 }
 
 .hero-button {
-  background: #dc3545;
+  background: #ff1b1e;
   color: white;
   padding: 12px 30px;
   font-size: 1.2rem;
@@ -38,5 +38,5 @@
 }
 
 .hero-button:hover {
-  background: #a71d2a;
+  background: #c91517;
 }

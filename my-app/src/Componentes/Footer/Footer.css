@@ -1,12 +1,17 @@
+/* CONTAINER GERAL DO FOOTER */
 footer {
-  background-color: #343a40;
+  background-color: #212529;
   color: white;
-  padding: 40px 0;
+  padding: 50px 0;
   text-align: center;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out;
 }
 
+/* TÍTULOS */
 footer h5 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -15,11 +20,12 @@ footer h5::after {
   content: "";
   display: block;
   width: 50px;
-  height: 2px;
-  background: white;
+  height: 3px;
+  background: #ff1b1e;
   margin: 10px auto 20px auto;
 }
 
+/* LISTA DE SERVIÇOS */
 footer ul {
   padding-left: 0;
   list-style: none;
@@ -27,59 +33,83 @@ footer ul {
 
 footer ul li {
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease-in-out;
 }
 
-footer p {
-  margin-bottom: 0.5rem;
+footer ul li:hover {
+  color: #c91517;
 }
 
+/* LINKS */
 footer a {
   color: white;
-  text-decoration: none; /* Remove o sublinhado dos links */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
 footer a:hover {
-  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+  color: #c91517;
+  text-decoration: underline;
 }
 
+/* LINHA DIVISÓRIA */
+footer hr {
+  width: 90%;
+  margin: 20px auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* TEXTO INFERIOR */
 footer .text-center {
+  font-size: 0.9rem;
   margin-top: 1rem;
 }
 
-/* Responsive styles for mobile */
+/* ÍCONES DE CONTATO */
+footer p svg {
+  margin-right: 10px;
+  color: #ff1b1e;
+}
+
+/* SEÇÃO FLEXÍVEL */
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
   footer {
-    padding: 20px 0;
+    padding: 30px 10px;
   }
 
   footer h5 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
   }
 
   footer ul li {
-    margin-bottom: 0.25rem;
+    font-size: 1rem;
   }
 
   footer p {
-    font-size: 0.875rem;
-    margin-bottom: 0.25rem;
-  }
-
-  footer .text-center {
-    margin-top: 0.5rem;
-  }
-
-  .footer-container {
-    text-align: center;
+    font-size: 0.9rem;
   }
 
   .footer-row {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-col {
-    margin-bottom: 1rem;
+    text-align: center;
   }
 }

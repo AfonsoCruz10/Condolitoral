@@ -10,7 +10,22 @@ import {
   FaClipboardCheck,
   FaBroom,
 } from "react-icons/fa";
+import { useInView } from "react-intersection-observer";
 import "./Home.css";
+
+function ServiceCard({ icon: Icon, title, description }) {
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+  });
+
+  return (
+    <div ref={ref} className={`service-card ${inView ? "visible" : "hidden"}`}>
+      <Icon className="service-icon" />
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
+  );
+}
 
 function Home() {
   const navigate = useNavigate();
@@ -49,43 +64,41 @@ function Home() {
       <div className="services">
         <h2>Nossos Serviços</h2>
         <div className="service-container">
-          <div className="service-card">
-            <FaBuilding className="service-icon" />
-            <h3>Administração Completa</h3>
-            <p>Gerimos o seu condomínio de forma eficiente e transparente.</p>
-          </div>
-          <div className="service-card">
-            <FaBalanceScale className="service-icon" />
-            <h3>Apoio Jurídico aos Condóminos</h3>
-            <p>Suporte jurídico para os moradores do condomínio.</p>
-          </div>
-          <div className="service-card">
-            <FaMoneyCheckAlt className="service-icon" />
-            <h3>Consultoria Financeira</h3>
-            <p>Controlo financeiro e prestação de contas detalhada.</p>
-          </div>
-          <div className="service-card">
-            <FaFileInvoiceDollar className="service-icon" />
-            <h3>Apresentação de Orçamento</h3>
-            <p>Apresentação de orçamento detalhado para o seu condomínio.</p>
-          </div>
-          <div className="service-card">
-            <FaClipboardCheck className="service-icon" />
-            <h3>Controlo e Acompanhamento dos Serviços</h3>
-            <p>Monitoramento contínuo dos serviços prestados.</p>
-          </div>
-          <div className="service-card">
-            <FaBroom className="service-icon" />
-            <h3>Limpezas Semanais</h3>
-            <p>
-              Serviços de limpeza semanal para manter o condomínio impecável.
-            </p>
-          </div>
-          <div className="service-card">
-            <FaTools className="service-icon" />
-            <h3>Pequenos Serviços de Manutenção / Conservação</h3>
-            <p>Realização de pequenos reparos e manutenção.</p>
-          </div>
+          <ServiceCard
+            icon={FaBuilding}
+            title="Administração Completa"
+            description="Gerimos o seu condomínio de forma eficiente e transparente."
+          />
+          <ServiceCard
+            icon={FaBalanceScale}
+            title="Apoio Jurídico aos Condóminos"
+            description="Suporte jurídico para os moradores do condomínio."
+          />
+          <ServiceCard
+            icon={FaMoneyCheckAlt}
+            title="Consultoria Financeira"
+            description="Controlo financeiro e prestação de contas detalhada."
+          />
+          <ServiceCard
+            icon={FaFileInvoiceDollar}
+            title="Apresentação de Orçamento"
+            description="Apresentação de orçamento detalhado para o seu condomínio."
+          />
+          <ServiceCard
+            icon={FaClipboardCheck}
+            title="Controlo e Acompanhamento dos Serviços"
+            description="Monitoramento contínuo dos serviços prestados."
+          />
+          <ServiceCard
+            icon={FaBroom}
+            title="Limpezas Semanais"
+            description="Serviços de limpeza semanal para manter o condomínio impecável."
+          />
+          <ServiceCard
+            icon={FaTools}
+            title="Pequenos Serviços de Manutenção / Conservação"
+            description="Realização de pequenos reparos e manutenção."
+          />
         </div>
       </div>
 

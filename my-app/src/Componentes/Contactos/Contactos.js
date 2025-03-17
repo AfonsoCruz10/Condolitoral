@@ -19,14 +19,39 @@ function Contactos() {
     phone: "",
     message: "",
   });
+
   const [isSending, setIsSending] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.name) newErrors.name = "Preencha o nome!";
+    if (!formData.email) newErrors.email = "Preencha o e-mail!";
+    if (!formData.phone) newErrors.phone = "Preencha o telefone!";
+    if (!formData.message) newErrors.message = "Digite sua mensagem!";
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      toast.info("Por favor, preencha todos os campos obrigatórios.", {
+        position: "top-right",
+      });
+      return;
+    }
+
     setIsSending(true);
 
     const serviceID =
@@ -37,8 +62,6 @@ function Contactos() {
     const publicKey =
       process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
 
-    console.log(serviceID, templateID);
-
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
@@ -48,14 +71,14 @@ function Contactos() {
 
     emailjs
       .send(serviceID, templateID, templateParams, publicKey)
-      .then((response) => {
+      .then(() => {
         toast.success("Mensagem enviada com sucesso!", {
           position: "top-right",
         });
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        resetForm();
+        setErrors({});
       })
-      .catch((error) => {
-        console.error("Erro ao enviar mensagem:", error);
+      .catch(() => {
         toast.error("Erro ao enviar mensagem. Tente novamente.", {
           position: "top-right",
         });
@@ -63,6 +86,11 @@ function Contactos() {
       .finally(() => {
         setIsSending(false);
       });
+  };
+
+  const handleClear = () => {
+    resetForm();
+    setErrors({});
   };
 
   return (
@@ -74,61 +102,78 @@ function Contactos() {
             <h2>Entre em contacto</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formNome">
+                <Form.Label>
+                  Nome <span className="required">*</span>
+                </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Nome"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  className={errors.name ? "input-error" : ""}
                 />
+                {errors.name && <p className="error-text">{errors.name}</p>}
               </Form.Group>
               <Row>
                 <Col md={6}>
                   <Form.Group controlId="formEmail">
+                    <Form.Label>
+                      Email <span className="required">*</span>
+                    </Form.Label>
                     <Form.Control
                       type="email"
-                      placeholder="Email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required
+                      className={errors.email ? "input-error" : ""}
                     />
+                    {errors.email && (
+                      <p className="error-text">{errors.email}</p>
+                    )}
                   </Form.Group>
                 </Col>
                 <Col md={6}>
                   <Form.Group controlId="formTelefone">
+                    <Form.Label>
+                      Telefone <span className="required">*</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Telefone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      required
+                      className={errors.phone ? "input-error" : ""}
                     />
+                    {errors.phone && (
+                      <p className="error-text">{errors.phone}</p>
+                    )}
                   </Form.Group>
                 </Col>
               </Row>
               <Form.Group controlId="formMensagem">
+                <Form.Label>
+                  Mensagem <span className="required">*</span>
+                </Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  placeholder="Mensagem"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
+                  className={errors.message ? "input-error" : ""}
                 />
+                {errors.message && (
+                  <p className="error-text">{errors.message}</p>
+                )}
               </Form.Group>
               <Button variant="danger" type="submit" disabled={isSending}>
                 {isSending ? "Enviando..." : "Enviar"}
               </Button>
+
               <Button
                 variant="secondary"
                 type="reset"
-                onClick={() =>
-                  setFormData({ name: "", email: "", phone: "", message: "" })
-                }
+                onClick={() => handleClear()}
                 disabled={isSending}
               >
                 Limpar
