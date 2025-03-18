@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
 import heroImage from "../../Assets/logo.png";
 import "./Header.css";
 
 function Header() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Adiciona efeito ao rolar a página
   useEffect(() => {
@@ -22,6 +23,10 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleToggleClick = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
@@ -43,8 +48,13 @@ function Header() {
                 <a href="mailto:geral@condolitoral.pt">geral@condolitoral.pt</a>
               </span>
             </div>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Toggle
+              aria-controls="basic-navbar-nav"
+              onClick={handleToggleClick}
+            >
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </Navbar.Toggle>
+            <Navbar.Collapse id="basic-navbar-nav" in={menuOpen}>
               <Nav className="ms-auto">
                 {[
                   { path: "/", name: "Início" },
