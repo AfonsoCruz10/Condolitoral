@@ -1,5 +1,6 @@
 /* Styles for the Header component */
 
+/* General navbar styles */
 .navbar .container,
 .navbar .container-fluid,
 .navbar .container-lg,
@@ -13,41 +14,38 @@
 }
 
 .navbar {
-  padding: 1rem 0;
+  padding: 10px 0; /* Reduzir o padding para diminuir a altura do header */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+/* Brand logo styles */
 .navbar-brand-custom {
   font-weight: bold;
   color: #ff1b1e !important;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Diminuir o tamanho da fonte */
 }
 
-/* LOGO */
 .navbar-brand-custom img {
-  width: 300px;
+  width: 250px; /* Ajustar o tamanho da imagem */
   transition: transform 0.3s ease-in-out;
 }
 
-.navbar-brand-custom:hover img {
-  transform: scale(1.05);
-}
-
+/* Contact info container */
 .contact-navbar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* CONTATO HEADER */
+/* Desktop contact info styles */
 .header-contact-info {
   display: flex;
   gap: 20px;
   color: #333 !important;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Diminuir o tamanho da fonte */
   font-weight: 500;
 }
 
@@ -62,13 +60,35 @@
   text-decoration: underline;
 }
 
-/* LINKS DE NAVEGAÇÃO */
+/* Mobile contact info styles */
+.header-contact-info-mobile {
+  display: none;
+  gap: 10px;
+  color: #333 !important;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.8rem; /* Diminuir o tamanho da fonte */
+  font-weight: 500;
+}
+
+.header-contact-info-mobile a {
+  color: #ff1b1e !important;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.header-contact-info-mobile a:hover {
+  color: #c91517 !important;
+  text-decoration: underline;
+}
+
+/* Navigation link styles */
 .nav-link {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Diminuir o tamanho da fonte */
   color: #333 !important;
   text-decoration: none;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Ajustar o padding */
 }
 
 .nav-link:hover {
@@ -76,14 +96,14 @@
   transform: scale(1.02);
 }
 
-/* LINK ATIVO */
+/* Active navigation link styles */
 .active-link {
   color: #ff1b1e !important;
   font-weight: bold;
   border-bottom: 2px solid #ff1b1e;
 }
 
-/* BOTÃO DE TOGGLE MOBILE */
+/* Navbar toggle button styles */
 .navbar-toggler {
   border: none;
   outline: none;
@@ -95,11 +115,22 @@
   transform: rotate(90deg);
 }
 
-/* RESPONSIVIDADE */
+/* Responsive styles */
 @media (max-width: 992px) {
+  .header-contact-info {
+    display: none;
+  }
+
+  .header-contact-info-mobile {
+    display: flex;
+  }
+
+  .navbar-brand-custom img {
+    width: 250px; /* Ajustar o tamanho da imagem */
+  }
   .nav-link {
-    font-size: 1rem;
-    padding: 12px;
+    font-size: 0.9rem; /* Diminuir o tamanho da fonte */
+    padding: 10px; /* Ajustar o padding */
     text-align: center;
   }
 

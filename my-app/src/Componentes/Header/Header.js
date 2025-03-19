@@ -10,7 +10,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Adiciona efeito ao rolar a página
+  // Add scroll effect to change navbar style
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -24,6 +24,7 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Toggle menu open/close state
   const handleToggleClick = () => {
     setMenuOpen(!menuOpen);
   };
@@ -35,9 +36,23 @@ function Header() {
         className={`custom-navbar ${scrolled ? "scrolled" : ""}`}
       >
         <Container>
+          {/* Mobile contact info */}
+          <div className="header-contact-info-mobile">
+            <span className="contact-item-mobile">
+              <FaPhone /> <a href="tel:+351227441656">+351 227 441 656</a>
+            </span>
+            <span className="contact-item-mobile">
+              <FaEnvelope />{" "}
+              <a href="mailto:geral@condolitoral.pt">geral@condolitoral.pt</a>
+            </span>
+          </div>
+
+          {/* Brand logo */}
           <Navbar.Brand href="/" className="navbar-brand-custom">
             <img src={heroImage} alt="Condolitoral logo" />
           </Navbar.Brand>
+
+          {/* Desktop contact info */}
           <div className="contact-navbar-container">
             <div className="header-contact-info">
               <span className="contact-item">
@@ -48,12 +63,16 @@ function Header() {
                 <a href="mailto:geral@condolitoral.pt">geral@condolitoral.pt</a>
               </span>
             </div>
+
+            {/* Navbar toggle button */}
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
               onClick={handleToggleClick}
             >
               {menuOpen ? <FaTimes /> : <FaBars />}
             </Navbar.Toggle>
+
+            {/* Navbar links */}
             <Navbar.Collapse id="basic-navbar-nav" in={menuOpen}>
               <Nav className="ms-auto">
                 {[
