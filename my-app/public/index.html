@@ -1,35 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt">
   <head>
+    <!-- Metadados Fundamentais -->
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Condolitoral - Administração De Condomínios, Lda</title>
+
+    <!-- SEO & Motores de Busca -->
     <meta
       name="description"
-      content="Simple Web site, created using create-react-app, designed to promote Condolitoral, a professional condominium management company."
+      content="A Condolitoral é uma empresa especializada na administração e gestão de condomínios nos concelhos de Vila Nova de Gaia e Santa Maria da Feira."
     />
     <meta
       name="keywords"
       content="condolitoral, gestão de condomínios, serviços de condomínio, administração de condomínios, lamas, santa maria de lamas, feira, santa maria da feira, contabilidade, gestão, condomínios"
     />
+
+    <!-- Favicons & Ícones para Navegadores e Googlebot -->
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
     <link
-      rel="apple-touch-icon"
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
       href="%PUBLIC_URL%/android-chrome-192x192.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="%PUBLIC_URL%/android-chrome-512x512.png"
+    />
+
+    <!-- Ícone para Apple / Safari & PWA Manifest -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/apple-touch-icon.png"
+    />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!-- Add Bootstrap CSS -->
+
+    <!-- Estilos Externos (Bootstrap) -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <title>Condolitoral - Administração De Condomínios, Lda</title>
 
-    <!-- Start Single Page Apps for GitHub Pages -->
+    <!-- Suporte para Single Page Apps (SPA) no GitHub Pages -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
+      // MIT License - https://github.com/rafgraph/spa-github-pages
       (function (l) {
         if (l.search[1] === "/") {
           var decoded = l.search
@@ -42,14 +75,16 @@
           window.history.replaceState(
             null,
             null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+            l.pathname.slice(0, -1) + decoded + l.hash,
           );
         }
       })(window.location);
     </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript
+      >É necessário ativar o JavaScript para navegar neste site.</noscript
+    >
     <div id="root"></div>
   </body>
 </html>
