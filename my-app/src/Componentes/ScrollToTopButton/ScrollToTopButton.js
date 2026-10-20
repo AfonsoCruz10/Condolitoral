@@ -25,9 +25,13 @@ function ScrollToTopButton() {
 
   return (
     <button
+      type="button"
       className="scroll-to-top"
       onClick={scrollToTop}
-      style={{ display: isVisible ? "block" : "none" }}
+      aria-label="Voltar ao topo da página"
+      aria-hidden={!isVisible}
+      tabIndex={isVisible ? 0 : -1}
+      hidden={!isVisible}
     >
       <FaArrowUp />
     </button>

@@ -31,6 +31,9 @@ function Contactos() {
     let newErrors = {};
     if (!formData.name) newErrors.name = "Preencha o nome!";
     if (!formData.email) newErrors.email = "Preencha o e-mail!";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Indique um e-mail válido!";
+    }
     if (!formData.phone) newErrors.phone = "Preencha o telefone!";
     if (!formData.message) newErrors.message = "Digite sua mensagem!";
     setErrors(newErrors);
@@ -110,9 +113,12 @@ function Contactos() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={errors.name ? "contact-name-error" : undefined}
                   className={errors.name ? "input-error" : ""}
                 />
-                {errors.name && <p className="error-text">{errors.name}</p>}
+                {errors.name && <p id="contact-name-error" className="error-text" role="alert">{errors.name}</p>}
               </Form.Group>
               <Row>
                 <Col md={6}>
@@ -125,10 +131,13 @@ function Contactos() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      required
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                       className={errors.email ? "input-error" : ""}
                     />
                     {errors.email && (
-                      <p className="error-text">{errors.email}</p>
+                      <p id="contact-email-error" className="error-text" role="alert">{errors.email}</p>
                     )}
                   </Form.Group>
                 </Col>
@@ -142,10 +151,13 @@ function Contactos() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      required
+                      aria-invalid={Boolean(errors.phone)}
+                      aria-describedby={errors.phone ? "contact-phone-error" : undefined}
                       className={errors.phone ? "input-error" : ""}
                     />
                     {errors.phone && (
-                      <p className="error-text">{errors.phone}</p>
+                      <p id="contact-phone-error" className="error-text" role="alert">{errors.phone}</p>
                     )}
                   </Form.Group>
                 </Col>
@@ -160,14 +172,17 @@ function Contactos() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
                   className={errors.message ? "input-error" : ""}
                 />
                 {errors.message && (
-                  <p className="error-text">{errors.message}</p>
+                  <p id="contact-message-error" className="error-text" role="alert">{errors.message}</p>
                 )}
               </Form.Group>
-              <Button variant="danger" type="submit" disabled={isSending}>
-                {isSending ? "Enviando..." : "Enviar"}
+              <Button variant="danger" type="submit" disabled={isSending} aria-busy={isSending}>
+                {isSending ? "A enviar..." : "Enviar"}
               </Button>
 
               <Button

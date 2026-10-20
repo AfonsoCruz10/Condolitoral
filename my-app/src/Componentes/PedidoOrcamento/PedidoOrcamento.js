@@ -25,7 +25,8 @@ function PedidoOrcamento() {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    const field = e.target.name || e.target.id;
+    setFormData({ ...formData, [field]: e.target.value });
   };
 
   const validateForm = () => {
@@ -33,6 +34,9 @@ function PedidoOrcamento() {
     if (!formData.nome) newErrors.nome = "Preencha o nome!";
     if (!formData.telefone) newErrors.telefone = "Preencha o telefone!";
     if (!formData.email) newErrors.email = "Preencha o e-mail!";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Indique um e-mail válido!";
+    }
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
@@ -127,11 +131,15 @@ function PedidoOrcamento() {
                 </Form.Label>
                 <Form.Control
                   type="text"
+                  name="nome"
                   value={formData.nome}
                   onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.nome)}
+                  aria-describedby={errors.nome ? "budget-name-error" : undefined}
                   className={errors.nome ? "input-error" : ""}
                 />
-                {errors.nome && <p className="error-text">{errors.nome}</p>}
+                {errors.nome && <p id="budget-name-error" className="error-text" role="alert">{errors.nome}</p>}
               </Form.Group>
             </Col>
             <Col md={6}>
@@ -141,12 +149,16 @@ function PedidoOrcamento() {
                 </Form.Label>
                 <Form.Control
                   type="text"
+                  name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.telefone)}
+                  aria-describedby={errors.telefone ? "budget-phone-error" : undefined}
                   className={errors.telefone ? "input-error" : ""}
                 />
                 {errors.telefone && (
-                  <p className="error-text">{errors.telefone}</p>
+                  <p id="budget-phone-error" className="error-text" role="alert">{errors.telefone}</p>
                 )}
               </Form.Group>
             </Col>
@@ -159,11 +171,15 @@ function PedidoOrcamento() {
                 </Form.Label>
                 <Form.Control
                   type="email"
+                  name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "budget-email-error" : undefined}
                   className={errors.email ? "input-error" : ""}
                 />
-                {errors.email && <p className="error-text">{errors.email}</p>}
+                {errors.email && <p id="budget-email-error" className="error-text" role="alert">{errors.email}</p>}
               </Form.Group>
             </Col>
           </Row>
@@ -175,6 +191,7 @@ function PedidoOrcamento() {
                 <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
+                  name="nomeCondominio"
                   value={formData.nomeCondominio}
                   onChange={handleChange}
                 />
@@ -185,6 +202,7 @@ function PedidoOrcamento() {
                 <Form.Label>Morada</Form.Label>
                 <Form.Control
                   type="text"
+                  name="morada"
                   value={formData.morada}
                   onChange={handleChange}
                 />
@@ -197,6 +215,7 @@ function PedidoOrcamento() {
                 <Form.Label>Localidade</Form.Label>
                 <Form.Control
                   type="text"
+                  name="localidade"
                   value={formData.localidade}
                   onChange={handleChange}
                 />
@@ -207,6 +226,7 @@ function PedidoOrcamento() {
                 <Form.Label>Idade do edifício</Form.Label>
                 <Form.Control
                   type="text"
+                  name="idadeEdificio"
                   value={formData.idadeEdificio}
                   onChange={handleChange}
                 />
@@ -219,6 +239,7 @@ function PedidoOrcamento() {
                 <Form.Label>Nº de Frações</Form.Label>
                 <Form.Control
                   type="text"
+                  name="numFracoes"
                   value={formData.numFracoes}
                   onChange={handleChange}
                 />
@@ -229,6 +250,7 @@ function PedidoOrcamento() {
                 <Form.Label>Nº de pisos</Form.Label>
                 <Form.Control
                   type="text"
+                  name="numPisos"
                   value={formData.numPisos}
                   onChange={handleChange}
                 />
@@ -241,6 +263,7 @@ function PedidoOrcamento() {
                 <Form.Label>Outras informações</Form.Label>
                 <Form.Control
                   as="textarea"
+                  name="outrasInformacoes"
                   rows={3}
                   value={formData.outrasInformacoes}
                   onChange={handleChange}
@@ -248,8 +271,8 @@ function PedidoOrcamento() {
               </Form.Group>
             </Col>
           </Row>
-          <Button variant="danger" type="submit" disabled={loading}>
-            {loading ? "Enviando..." : "Enviar"}
+          <Button variant="danger" type="submit" disabled={loading} aria-busy={loading}>
+            {loading ? "A enviar..." : "Enviar"}
           </Button>
           <Button
             variant="secondary"
