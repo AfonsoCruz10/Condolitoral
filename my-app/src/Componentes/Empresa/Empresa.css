@@ -1,37 +1,27 @@
 .empresa-container {
-  padding: 40px 20px;
-  text-align: center;
-  margin: 20px auto;
-  max-width: 800px;
+  width: min(100% - 32px, 850px);
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 104px) 0;
 }
 
 .empresa-container h1 {
-  font-size: 2rem;
-  color: #ff1b1e;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #ff1b1e;
-  display: inline-block;
-  padding-bottom: 5px;
+  margin: 0 0 28px;
+  color: var(--color-text);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.empresa-container h1::after {
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 12px;
+  background: var(--color-brand);
+  content: "";
 }
 
 .empresa-container p {
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.6;
   margin-bottom: 20px;
-  text-align: justify;
-}
-
-@media (max-width: 768px) {
-  .empresa-container {
-    padding: 20px 10px;
-  }
-
-  .empresa-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .empresa-container p {
-    font-size: 1rem;
-  }
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
 }

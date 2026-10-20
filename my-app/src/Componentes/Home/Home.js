@@ -31,38 +31,44 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <main>
       {/* HERO SECTION */}
-      <div className="hero">
+      <section className="home-hero" aria-labelledby="home-title">
         <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <h1>Venha conhecer a nossa experiência.</h1>
+        <div className="home-hero__content">
+          <p className="eyebrow">Administração de condomínios</p>
+          <h1 id="home-title">Experiência e proximidade para o seu condomínio.</h1>
           <p>
-            Especialistas em administração de condomínios há mais de 20 anos.
+            Gestão profissional, transparente e próxima há mais de 20 anos.
           </p>
           <button
             className="hero-button"
             onClick={() => navigate("/orcamento")}
           >
-            <FaFileInvoiceDollar className="icon" /> Pedir orçamento
+            <FaFileInvoiceDollar aria-hidden="true" /> Pedir orçamento
           </button>
         </div>
-      </div>
+      </section>
 
       {/* SEÇÃO APRESENTAÇÃO */}
-      <div className="presentation">
-        <h2>Estamos aqui para o servir</h2>
+      <section className="presentation" aria-labelledby="presentation-title">
+        <div className="content-container">
+        <p className="eyebrow">A nossa experiência</p>
+        <h2 id="presentation-title">Estamos aqui para o servir</h2>
         <p>
           A Condolitoral é uma empresa especializada na administração de
           condomínios, atuando nos concelhos de Vila Nova de Gaia, Espinho e
           Santa Maria da Feira. Nossa equipa tem mais de 20 anos de experiência,
           garantindo um serviço de qualidade.
         </p>
-      </div>
+        </div>
+      </section>
 
       {/* SEÇÃO SERVIÇOS */}
-      <div className="services">
-        <h2>Nossos Serviços</h2>
+      <section className="services" aria-labelledby="services-title">
+        <div className="content-container">
+        <p className="eyebrow">O que fazemos</p>
+        <h2 id="services-title">Serviços para uma gestão tranquila</h2>
         <div className="service-container">
           <ServiceCard
             icon={FaBuilding}
@@ -100,22 +106,23 @@ function Home() {
             description="Realização de pequenos reparos e manutenção."
           />
         </div>
-      </div>
+        </div>
+      </section>
 
       {/* SEÇÃO CONTATO */}
-      <div className="hero contact-section">
+      <section className="hero contact-section" aria-labelledby="contact-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h2>Tem interesse nos nossos serviços?</h2>
+          <h2 id="contact-title">Tem interesse nos nossos serviços?</h2>
           <button
             className="hero-button"
             onClick={() => navigate("/contactos")}
           >
-            <FaPhone className="icon" /> CONTACTE-NOS
+            <FaPhone aria-hidden="true" /> CONTACTE-NOS
           </button>
-        </div>
-      </div>
-    </div>
+          </div>
+        </section>
+      </main>
   );
 }
 

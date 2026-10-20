@@ -1,77 +1,60 @@
 .legislation-container {
-  padding: 40px 20px;
-  text-align: center;
-  margin: 20px auto;
-  max-width: 1000px;
+  width: min(100% - 32px, 1000px);
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 104px) 0;
 }
 
 .legislation-container h1 {
-  font-size: 2rem;
-  color: #ff1b1e;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #ff1b1e;
-  display: inline-block;
-  padding-bottom: 5px;
+  margin: 0 0 16px;
+  color: var(--color-text);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.15;
 }
 
 .legislation-container h2 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 30px;
+  margin: 0 0 48px;
+  color: var(--color-text-muted);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .section-container {
-  margin-bottom: 40px;
-  text-align: left;
+  margin-bottom: 24px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
 }
 
 .section-container h3 {
-  font-size: 1.25rem;
-  color: #ff1b1e;
-  margin-bottom: 15px;
-  padding-bottom: 5px;
+  margin: 0 0 18px;
+  color: var(--color-brand-dark);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.4;
 }
 
 .section-container ul {
-  list-style-type: none;
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .section-container li {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 10px;
-  padding-left: 20px;
   position: relative;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
 }
 
 .section-container li::before {
-  content: "•";
-  color: #ff1b1e;
   position: absolute;
-  left: 0;
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-@media (max-width: 768px) {
-  .legislation-container {
-    padding: 20px 10px;
-  }
-
-  .legislation-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .legislation-container h2 {
-    font-size: 1.25rem;
-  }
-
-  .section-container h3 {
-    font-size: 1rem;
-  }
-
-  .section-container li {
-    font-size: 1rem;
-  }
+  top: 0.45em;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  content: "";
 }

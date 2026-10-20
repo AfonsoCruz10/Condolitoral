@@ -1,115 +1,43 @@
-/* CONTAINER DO FORMULÁRIO */
 .pedido-orcamento-container {
-  padding: 40px 20px;
-  max-width: 850px;
+  width: min(100% - 32px, 850px);
+  padding: clamp(40px, 7vw, 88px) 0;
 }
 
-/* TÍTULOS */
 .pedido-orcamento-container h1 {
-  font-size: 2rem;
-  color: #ff1b1e;
+  margin: 32px 0 24px;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.pedido-orcamento-container h1:first-child {
+  margin-top: 0;
+}
+
+.pedido-orcamento-container .form-group {
   margin-bottom: 20px;
-  border-bottom: 3px solid #ff1b1e;
-  display: inline-block;
-  padding-bottom: 5px;
 }
 
-/* GRUPOS DO FORMULÁRIO */
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
+.pedido-orcamento-container .form-label {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
-.form-group label {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
-  display: block;
-}
-
-/* DESTAQUE PARA CAMPOS OBRIGATÓRIOS */
 .required {
-  color: #ff1b1e !important;
-  font-weight: bold;
+  color: var(--color-brand-dark);
+  font-weight: 700;
 }
 
-/* CAMPOS DE INPUT */
-.form-control {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.pedido-orcamento-container .btn-danger,
+.contact-form .btn-danger {
+  background: var(--color-brand);
 }
 
-/* EFEITO QUANDO CLICAR NO INPUT */
-.form-control:focus {
-  border-color: #ff1b1e;
-  box-shadow: 0 0 8px rgba(255, 27, 30, 0.5);
+.pedido-orcamento-container .btn-danger:hover,
+.contact-form .btn-danger:hover {
+  background: var(--color-brand-dark);
 }
 
-/* CAMPOS COM ERRO */
-.input-error {
-  border: 2px solid #ff1b1e !important;
-}
-
-/* MENSAGEM DE ERRO */
-.error-text {
-  color: #ff1b1e;
-  font-size: 0.9rem;
-  margin-top: 5px;
-}
-
-/* BOTÕES */
-.pedido-orcamento-container .btn {
-  padding: 12px 25px;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.btn-danger {
-  background-color: #ff1b1e;
-  color: white;
-  border: none;
-}
-
-.btn-danger:hover {
-  background-color: #c91517;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-  .pedido-orcamento-container {
-    padding: 20px 10px;
-  }
-
-  .pedido-orcamento-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .form-group label {
-    font-size: 1rem;
-  }
-
-  .form-control {
-    font-size: 1rem;
-  }
-
-  .btn {
-    font-size: 1rem;
-  }
+.pedido-orcamento-container .btn-secondary,
+.contact-form .btn-secondary {
+  background: #475569;
 }
