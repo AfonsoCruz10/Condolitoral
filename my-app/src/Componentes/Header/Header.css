@@ -1,151 +1,475 @@
-/* Styles for the Header component */
+/* ==========================================================================
+   Header – Condolitoral
+   Mobile-first. Breakpoint desktop: 992px (igual ao anterior "lg").
+   Todas as classes usam o prefixo "site-header" / "site-topbar" para não
+   colidir com as classes globais do Bootstrap (.navbar, .nav-link, ...).
+   ========================================================================== */
 
-/* General navbar styles */
-.navbar .container,
-.navbar .container-fluid,
-.navbar .container-lg,
-.navbar .container-md,
-.navbar .container-sm,
-.navbar .container-xl {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+:root {
+  --sh-red: #ff1b1e; /* cor da marca (indicadores, ícones) */
+  --sh-red-strong: #d6101a; /* texto/botões – contraste AA sobre branco */
+  --sh-red-dark: #b50d15;
+  --sh-text: #1f2430;
+  --sh-muted: #4b5563;
+
+  --sh-topbar-h: 0px;
+  --sh-bar-h: 64px;
+  /* Altura inicial do header (útil para páginas que usem 100vh - header) */
+  --header-h: calc(var(--sh-topbar-h) + var(--sh-bar-h));
 }
 
-.navbar {
-  padding: 10px 0; /* Reduzir o padding para diminuir a altura do header */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+@media (min-width: 992px) {
+  :root {
+    --sh-topbar-h: 30px;
+    --sh-bar-h: 72px;
+  }
 }
 
-/* Brand logo styles */
-.navbar-brand-custom {
-  font-weight: bold;
-  color: #ff1b1e !important;
-  font-size: 1.2rem; /* Diminuir o tamanho da fonte */
-}
-
-.navbar-brand-custom img {
-  width: 250px; /* Ajustar o tamanho da imagem */
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Contact info container */
-.contact-navbar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Desktop contact info styles */
-.header-contact-info {
-  display: flex;
-  gap: 20px;
-  color: #333 !important;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 0.9rem; /* Diminuir o tamanho da fonte */
-  font-weight: 500;
-}
-
-.header-contact-info a {
-  color: #ff1b1e !important;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-.header-contact-info a:hover {
-  color: #c91517 !important;
-  text-decoration: underline;
-}
-
-/* Mobile contact info styles */
-.header-contact-info-mobile {
+/* --------------------------------------------------------------------------
+   Barra de contactos (desktop)
+   -------------------------------------------------------------------------- */
+.site-topbar {
   display: none;
-  gap: 10px;
-  color: #333 !important;
+  height: var(--sh-topbar-h);
+  background: #f4f5f7;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 992px) {
+  .site-topbar {
+    display: block;
+  }
+}
+
+.site-topbar__inner {
+  display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  font-size: 0.8rem; /* Diminuir o tamanho da fonte */
+  justify-content: flex-end;
+  gap: 24px;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.site-topbar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sh-muted);
+  text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.header-contact-info-mobile a {
-  color: #ff1b1e !important;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
+.site-topbar a svg {
+  color: var(--sh-red);
+  font-size: 0.75rem;
 }
 
-.header-contact-info-mobile a:hover {
-  color: #c91517 !important;
-  text-decoration: underline;
+.site-topbar a:hover {
+  color: var(--sh-red-strong);
 }
 
-/* Navigation link styles */
-.nav-link {
-  font-size: 1rem; /* Diminuir o tamanho da fonte */
-  color: #333 !important;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  padding: 8px 12px; /* Ajustar o padding */
+/* --------------------------------------------------------------------------
+   Header (sticky + vidro fosco)
+   O desfoque está num pseudo-elemento: um backdrop-filter diretamente no
+   <header> transformaria o menu mobile (position: fixed) em "filho" do header
+   e o menu deixaria de cobrir o ecrã.
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  height: var(--sh-bar-h);
+  font-family: inherit;
 }
 
-.nav-link:hover {
-  color: #c91517 !important;
-  transform: scale(1.02);
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* Active navigation link styles */
-.active-link {
-  color: #ff1b1e !important;
-  font-weight: bold;
-  border-bottom: 2px solid #ff1b1e;
+.site-header.is-scrolled::before {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.22);
 }
 
-/* Navbar toggle button styles */
-.navbar-toggler {
-  border: none;
-  outline: none;
-  box-shadow: none !important;
-  transition: transform 0.3s ease-in-out;
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .site-header::before {
+    background: rgba(255, 255, 255, 0.98);
+  }
 }
 
-.navbar-toggler:active {
-  transform: rotate(90deg);
+.site-header__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
-/* Responsive styles */
-@media (max-width: 992px) {
-  .header-contact-info {
+@media (min-width: 992px) {
+  .site-header__inner {
+    padding: 0 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Logótipo
+   -------------------------------------------------------------------------- */
+.site-header__brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
+.site-header__logo {
+  display: block;
+  height: 46px;
+  width: auto; /* mantém a proporção original (594×180) */
+  max-width: none;
+}
+
+@media (min-width: 992px) {
+  .site-header__logo {
+    height: 56px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Botão hambúrguer (mobile)
+   -------------------------------------------------------------------------- */
+.site-header__toggle {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.site-header__toggle:hover {
+  background: rgba(214, 16, 26, 0.08);
+}
+
+.site-header__toggle-bar {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sh-text);
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.site-header__toggle-bar:nth-child(1) {
+  top: 15px;
+}
+.site-header__toggle-bar:nth-child(2) {
+  top: 21px;
+}
+.site-header__toggle-bar:nth-child(3) {
+  top: 27px;
+}
+
+.site-header.is-open .site-header__toggle-bar {
+  background: var(--sh-red-strong);
+}
+.site-header.is-open .site-header__toggle-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.site-header.is-open .site-header__toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.site-header.is-open .site-header__toggle-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (min-width: 992px) {
+  .site-header__toggle {
     display: none;
   }
+}
 
-  .header-contact-info-mobile {
-    display: flex;
-  }
+/* --------------------------------------------------------------------------
+   Navegação – MOBILE: painel em ecrã inteiro por baixo da barra
+   Quando fechado fica com visibility:hidden, por isso os links não recebem
+   foco por teclado nem são lidos por leitores de ecrã.
+   -------------------------------------------------------------------------- */
+.site-header__nav {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: calc(var(--sh-bar-h) + 16px) 20px
+    max(24px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0s linear 0.3s;
+}
 
-  .navbar-brand-custom img {
-    width: 250px; /* Ajustar o tamanho da imagem */
-  }
-  .nav-link {
-    font-size: 0.9rem; /* Diminuir o tamanho da fonte */
-    padding: 10px; /* Ajustar o padding */
-    text-align: center;
-  }
+.site-header.is-open .site-header__nav {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0s linear 0s;
+}
 
-  .navbar-collapse {
-    text-align: center;
-  }
+.site-header__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  .navbar-toggler {
-    display: flex;
+/* Entrada escalonada dos itens ao abrir o menu */
+.site-header__item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.site-header.is-open .site-header__item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 45ms + 80ms);
+}
+
+.site-header__link {
+  position: relative;
+  display: block;
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: var(--sh-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.site-header__link:hover {
+  color: var(--sh-red-strong);
+  background: rgba(214, 16, 26, 0.06);
+  text-decoration: none !important;
+}
+
+.site-header__link.is-active {
+  color: var(--sh-red-strong);
+  background: rgba(214, 16, 26, 0.08);
+}
+
+/* Indicador da página atual (mobile: barra lateral) */
+.site-header__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 55%;
+  border-radius: 3px;
+  background: var(--sh-red);
+  transform: translateY(-50%) scaleY(0);
+  transition: transform 0.25s ease;
+}
+
+.site-header__link.is-active::after {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* Botão de destaque (Call-to-Action) */
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  border-radius: 999px;
+  background: var(--sh-red-strong);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 8px 18px -8px rgba(214, 16, 26, 0.6);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.site-header__cta:hover {
+  background: var(--sh-red-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px -10px rgba(214, 16, 26, 0.7);
+}
+
+.site-header__cta:active {
+  transform: translateY(0);
+}
+
+.site-header__cta.is-active {
+  background: var(--sh-red-dark);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 27, 30, 0.25);
+}
+
+/* Contactos no menu mobile */
+.site-header__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.site-header__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  color: var(--sh-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.site-header__contact a svg {
+  color: var(--sh-red);
+}
+
+/* --------------------------------------------------------------------------
+   Navegação – DESKTOP: links em linha + CTA à direita
+   -------------------------------------------------------------------------- */
+@media (min-width: 992px) {
+  .site-header__nav {
+    position: static;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
   }
 
-  .navbar-toggler-icon {
-    font-size: 1.5rem;
-    color: #ff1b1e;
+  .site-header__list {
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .site-header__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .site-header__link {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+  }
+
+  .site-header__link.is-active {
+    background: transparent;
+  }
+
+  /* Indicador da página atual (desktop: sublinhado animado) */
+  .site-header__link::after {
+    left: 14px;
+    right: 14px;
+    top: auto;
+    bottom: 3px;
+    width: auto;
+    height: 2px;
+    transform: scaleX(0);
+  }
+
+  .site-header__link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .site-header__cta {
+    padding: 11px 22px;
+    font-size: 0.9375rem;
+  }
+
+  .site-header__contact {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Foco visível (teclado)
+   -------------------------------------------------------------------------- */
+.site-header a:focus-visible,
+.site-header button:focus-visible,
+.site-topbar a:focus-visible {
+  outline: 2px solid var(--sh-red-strong);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Respeitar "reduzir movimento"
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header *,
+  .site-header::before,
+  .site-header *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
