@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,6 +17,16 @@ import Footer from "./Componentes/Footer/Footer";
 import NotFound from "./Componentes/NotFound/NotFound";
 import ScrollToTopButton from "./Componentes/ScrollToTopButton/ScrollToTopButton";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function Layout() {
   const location = useLocation();
 
@@ -29,6 +39,8 @@ function Layout() {
 
   return (
     <>
+      <ScrollToTop />
+
       {!isNotFound && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
