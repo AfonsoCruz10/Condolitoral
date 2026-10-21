@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import {
   FaMapMarkerAlt,
@@ -13,40 +13,104 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Contactos.css";
 
 function Contactos() {
+  const formStartedAt = useRef(Date.now());
+  const cooldownTimer = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
+    website: "",
   });
 
   const [isSending, setIsSending] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
   const [errors, setErrors] = useState({});
 
+  useEffect(
+    () => () => {
+      window.clearTimeout(cooldownTimer.current);
+    },
+    [],
+  );
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((current) => ({
+      ...current,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const validateForm = () => {
-    let newErrors = {};
-    if (!formData.name) newErrors.name = "Preencha o nome!";
-    if (!formData.email) newErrors.email = "Preencha o e-mail!";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    const newErrors = {};
+    const name = formData.name.trim();
+    const email = formData.email.trim().toLowerCase();
+    const phone = formData.phone.trim();
+    const message = formData.message.trim();
+
+    if (!name) newErrors.name = "Preencha o nome!";
+    else if (name.length < 2 || name.length > 80) {
+      newErrors.name = "O nome deve ter entre 2 e 80 caracteres.";
+    } else if (!/^[\p{L}][\p{L}\s.'-]*$/u.test(name)) {
+      newErrors.name = "Indique um nome válido.";
+    }
+
+    if (!email) newErrors.email = "Preencha o e-mail!";
+    else if (
+      email.length > 254 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
       newErrors.email = "Indique um e-mail válido!";
     }
-    if (!formData.phone) newErrors.phone = "Preencha o telefone!";
-    if (!formData.message) newErrors.message = "Digite sua mensagem!";
+
+    if (!phone) newErrors.phone = "Preencha o telefone!";
+    else if (
+      phone.length > 25 ||
+      !/^[+]?[\d\s().-]+$/.test(phone) ||
+      phone.replace(/\D/g, "").length < 7
+    ) {
+      newErrors.phone = "Indique um telefone válido.";
+    }
+
+    if (!message) newErrors.message = "Digite sua mensagem!";
+    else if (message.length < 10 || message.length > 2000) {
+      newErrors.message = "A mensagem deve ter entre 10 e 2000 caracteres.";
+    }
+
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
   };
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      website: "",
+    });
+    formStartedAt.current = Date.now();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isSending || cooldown) return;
+
+    if (formData.website.trim()) {
+      toast.error("Não foi possível validar o formulário.", {
+        position: "top-right",
+      });
+      return;
+    }
+
+    if (Date.now() - formStartedAt.current < 3000) {
+      toast.info("Aguarde alguns segundos antes de enviar o formulário.", {
+        position: "top-right",
+      });
+      return;
+    }
 
     if (!validateForm()) {
       toast.info("Por favor, preencha todos os campos obrigatórios.", {
@@ -55,21 +119,24 @@ function Contactos() {
       return;
     }
 
+    const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID?.trim();
+    const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID_CONTACT?.trim();
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY?.trim();
+
+    if (!serviceID || !templateID || !publicKey) {
+      toast.error("O formulário está temporariamente indisponível.", {
+        position: "top-right",
+      });
+      return;
+    }
+
     setIsSending(true);
 
-    const serviceID =
-      process.env.REACT_APP_EMAILJS_SERVICE_ID || "default_service_id";
-    const templateID =
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID_CONTACT ||
-      "default_template_id";
-    const publicKey =
-      process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "default_public_key";
-
     const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
+      from_name: formData.name.trim(),
+      from_email: formData.email.trim().toLowerCase(),
+      phone: formData.phone.trim(),
+      message: formData.message.trim(),
     };
 
     emailjs
@@ -80,6 +147,11 @@ function Contactos() {
         });
         resetForm();
         setErrors({});
+        setCooldown(true);
+        cooldownTimer.current = window.setTimeout(
+          () => setCooldown(false),
+          60_000,
+        );
       })
       .catch(() => {
         toast.error("Erro ao enviar mensagem. Tente novamente.", {
@@ -113,6 +185,7 @@ function Contactos() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  maxLength={80}
                   required
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? "contact-name-error" : undefined}
@@ -131,6 +204,7 @@ function Contactos() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      maxLength={254}
                       required
                       aria-invalid={Boolean(errors.email)}
                       aria-describedby={errors.email ? "contact-email-error" : undefined}
@@ -151,6 +225,7 @@ function Contactos() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      maxLength={25}
                       required
                       aria-invalid={Boolean(errors.phone)}
                       aria-describedby={errors.phone ? "contact-phone-error" : undefined}
@@ -172,6 +247,7 @@ function Contactos() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  maxLength={2000}
                   required
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "contact-message-error" : undefined}
@@ -181,8 +257,23 @@ function Contactos() {
                   <p id="contact-message-error" className="error-text" role="alert">{errors.message}</p>
                 )}
               </Form.Group>
-              <Button variant="danger" type="submit" disabled={isSending} aria-busy={isSending}>
-                {isSending ? "A enviar..." : "Enviar"}
+              <Form.Control
+                className="contact-website-field"
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+              <Button
+                variant="danger"
+                type="submit"
+                disabled={isSending || cooldown}
+                aria-busy={isSending}
+              >
+                {isSending ? "A enviar..." : cooldown ? "Enviado" : "Enviar"}
               </Button>
 
               <Button
