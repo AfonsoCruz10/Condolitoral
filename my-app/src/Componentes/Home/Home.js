@@ -14,13 +14,19 @@ import {
 import { useInView } from "react-intersection-observer";
 import "./Home.css";
 
-function ServiceCard({ icon: Icon, title, description }) {
+function ServiceCard({ icon: Icon, title, description, isDuplicate = false }) {
   const { ref, inView } = useInView({
     threshold: 0.3,
   });
 
   return (
-    <div ref={ref} className={`service-card ${inView ? "visible" : "hidden"}`}>
+    <div
+      ref={ref}
+      className={`service-card ${inView ? "visible" : "hidden"}`}
+      tabIndex={isDuplicate ? -1 : 0}
+      aria-hidden={isDuplicate}
+      role="listitem"
+    >
       <Icon className="service-icon" />
       <h3>{title}</h3>
       <p>{description}</p>
@@ -31,6 +37,43 @@ function ServiceCard({ icon: Icon, title, description }) {
 function Home() {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const services = [
+    {
+      icon: FaBuilding,
+      title: t("home.services.administration.0"),
+      description: t("home.services.administration.1"),
+    },
+    {
+      icon: FaBalanceScale,
+      title: t("home.services.legal.0"),
+      description: t("home.services.legal.1"),
+    },
+    {
+      icon: FaMoneyCheckAlt,
+      title: t("home.services.finance.0"),
+      description: t("home.services.finance.1"),
+    },
+    {
+      icon: FaFileInvoiceDollar,
+      title: t("home.services.budget.0"),
+      description: t("home.services.budget.1"),
+    },
+    {
+      icon: FaClipboardCheck,
+      title: t("home.services.monitoring.0"),
+      description: t("home.services.monitoring.1"),
+    },
+    {
+      icon: FaBroom,
+      title: t("home.services.cleaning.0"),
+      description: t("home.services.cleaning.1"),
+    },
+    {
+      icon: FaTools,
+      title: t("home.services.maintenance.0"),
+      description: t("home.services.maintenance.1"),
+    },
+  ];
 
   return (
     <main>
@@ -64,42 +107,24 @@ function Home() {
         <div className="content-container">
         <p className="eyebrow">{t("home.whatWeDo")}</p>
         <h2 id="services-title">{t("home.servicesTitle")}</h2>
-        <div className="service-container">
-          <ServiceCard
-            icon={FaBuilding}
-            title={t("home.services.administration.0")}
-            description={t("home.services.administration.1")}
-          />
-          <ServiceCard
-            icon={FaBalanceScale}
-            title={t("home.services.legal.0")}
-            description={t("home.services.legal.1")}
-          />
-          <ServiceCard
-            icon={FaMoneyCheckAlt}
-            title={t("home.services.finance.0")}
-            description={t("home.services.finance.1")}
-          />
-          <ServiceCard
-            icon={FaFileInvoiceDollar}
-            title={t("home.services.budget.0")}
-            description={t("home.services.budget.1")}
-          />
-          <ServiceCard
-            icon={FaClipboardCheck}
-            title={t("home.services.monitoring.0")}
-            description={t("home.services.monitoring.1")}
-          />
-          <ServiceCard
-            icon={FaBroom}
-            title={t("home.services.cleaning.0")}
-            description={t("home.services.cleaning.1")}
-          />
-          <ServiceCard
-            icon={FaTools}
-            title={t("home.services.maintenance.0")}
-            description={t("home.services.maintenance.1")}
-          />
+        <div className="service-container" role="list">
+          <div className="service-track">
+            {[false, true].map((isDuplicate) => (
+              <div
+                className="service-group"
+                key={isDuplicate ? "duplicate" : "original"}
+                aria-hidden={isDuplicate}
+              >
+                {services.map((service) => (
+                  <ServiceCard
+                    key={`${isDuplicate ? "duplicate-" : ""}${service.title}`}
+                    {...service}
+                    isDuplicate={isDuplicate}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
         </div>
       </section>
