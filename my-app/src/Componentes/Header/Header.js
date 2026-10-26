@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import logo from "../../Assets/logo.png";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import "./Header.css";
 
 const PHONE = { label: "+351 227 441 656", href: "tel:+351227441656" };
@@ -11,20 +13,13 @@ const EMAIL = {
 };
 
 // Mesmas rotas definidas em App.js
-const NAV_LINKS = [
-  { path: "/", name: "Início" },
-  { path: "/empresa", name: "Empresa" },
-  { path: "/legislacao", name: "Legislação" },
-  { path: "/contactos", name: "Contactos" },
-];
-const CTA = { path: "/orcamento", name: "Pedido de orçamento" };
-
 // Tem de coincidir com o breakpoint em Header.css
 const DESKTOP_QUERY = "(min-width: 992px)";
 
 const FOCUSABLE = "a[href], button:not([disabled])";
 
 function Header() {
+  const { t } = useTranslation();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -117,6 +112,13 @@ function Header() {
   const linkClass = ({ isActive }) =>
     `site-header__link${isActive ? " is-active" : ""}`;
 
+  const navLinks = [
+    { path: "/", name: t("nav.home") },
+    { path: "/empresa", name: t("nav.company") },
+    { path: "/legislacao", name: t("nav.legislation") },
+    { path: "/contactos", name: t("nav.contacts") },
+  ];
+
   return (
     <>
       {/* Barra de contactos (apenas desktop). Faz scroll com a página. */}
@@ -128,6 +130,7 @@ function Header() {
           <a href={EMAIL.href}>
             <FaEnvelope aria-hidden="true" /> {EMAIL.label}
           </a>
+          <LanguageSwitcher />
         </div>
       </div>
 
@@ -142,7 +145,7 @@ function Header() {
             <img
               className="site-header__logo"
               src={logo}
-              alt="Condolitoral – Administração de Condomínios"
+              alt={t("header.logoAlt")}
               width="594"
               height="180"
             />
@@ -152,7 +155,7 @@ function Header() {
             ref={toggleRef}
             type="button"
             className="site-header__toggle"
-            aria-label="Menu principal"
+            aria-label={t("nav.menu")}
             aria-expanded={menuOpen}
             aria-controls="menu-principal"
             onClick={() => setMenuOpen((open) => !open)}
@@ -165,10 +168,10 @@ function Header() {
           <nav
             id="menu-principal"
             className="site-header__nav"
-            aria-label="Navegação principal"
+            aria-label={t("nav.main")}
           >
             <ul className="site-header__list">
-              {NAV_LINKS.map(({ path, name }, index) => (
+              {navLinks.map(({ path, name }, index) => (
                 <li
                   className="site-header__item"
                   key={path}
@@ -187,13 +190,13 @@ function Header() {
             </ul>
 
             <NavLink
-              to={CTA.path}
+              to="/orcamento"
               className={({ isActive }) =>
                 `site-header__cta${isActive ? " is-active" : ""}`
               }
               onClick={closeMenu}
             >
-              {CTA.name}
+              {t("nav.quote")}
             </NavLink>
 
             {/* Contactos dentro do menu mobile */}
@@ -204,6 +207,7 @@ function Header() {
               <a href={EMAIL.href}>
                 <FaEnvelope aria-hidden="true" /> {EMAIL.label}
               </a>
+              <LanguageSwitcher />
             </div>
           </nav>
         </div>

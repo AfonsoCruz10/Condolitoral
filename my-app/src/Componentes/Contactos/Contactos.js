@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import {
   FaMapMarkerAlt,
@@ -13,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Contactos.css";
 
 function Contactos() {
+  const { t } = useTranslation();
   const formStartedAt = useRef(Date.now());
   const cooldownTimer = useRef(null);
   const [formData, setFormData] = useState({
@@ -48,33 +50,33 @@ function Contactos() {
     const phone = formData.phone.trim();
     const message = formData.message.trim();
 
-    if (!name) newErrors.name = "Preencha o nome!";
+    if (!name) newErrors.name = t("contact.errors.nameRequired");
     else if (name.length < 2 || name.length > 80) {
-      newErrors.name = "O nome deve ter entre 2 e 80 caracteres.";
+      newErrors.name = t("contact.errors.nameLength");
     } else if (!/^[\p{L}][\p{L}\s.'-]*$/u.test(name)) {
-      newErrors.name = "Indique um nome válido.";
+      newErrors.name = t("contact.errors.nameInvalid");
     }
 
-    if (!email) newErrors.email = "Preencha o e-mail!";
+    if (!email) newErrors.email = t("contact.errors.emailRequired");
     else if (
       email.length > 254 ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     ) {
-      newErrors.email = "Indique um e-mail válido!";
+      newErrors.email = t("contact.errors.emailInvalid");
     }
 
-    if (!phone) newErrors.phone = "Preencha o telefone!";
+    if (!phone) newErrors.phone = t("contact.errors.phoneRequired");
     else if (
       phone.length > 25 ||
       !/^[+]?[\d\s().-]+$/.test(phone) ||
       phone.replace(/\D/g, "").length < 7
     ) {
-      newErrors.phone = "Indique um telefone válido.";
+      newErrors.phone = t("contact.errors.phoneInvalid");
     }
 
-    if (!message) newErrors.message = "Digite sua mensagem!";
+    if (!message) newErrors.message = t("contact.errors.messageRequired");
     else if (message.length < 10 || message.length > 2000) {
-      newErrors.message = "A mensagem deve ter entre 10 e 2000 caracteres.";
+      newErrors.message = t("contact.errors.messageLength");
     }
 
     setErrors(newErrors);
@@ -99,21 +101,21 @@ function Contactos() {
     if (isSending || cooldown) return;
 
     if (formData.website.trim()) {
-      toast.error("Não foi possível validar o formulário.", {
+      toast.error(t("contact.invalidForm"), {
         position: "top-right",
       });
       return;
     }
 
     if (Date.now() - formStartedAt.current < 3000) {
-      toast.info("Aguarde alguns segundos antes de enviar o formulário.", {
+      toast.info(t("contact.wait"), {
         position: "top-right",
       });
       return;
     }
 
     if (!validateForm()) {
-      toast.info("Por favor, preencha todos os campos obrigatórios.", {
+      toast.info(t("contact.requiredFields"), {
         position: "top-right",
       });
       return;
@@ -124,7 +126,7 @@ function Contactos() {
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY?.trim();
 
     if (!serviceID || !templateID || !publicKey) {
-      toast.error("O formulário está temporariamente indisponível.", {
+      toast.error(t("contact.unavailable"), {
         position: "top-right",
       });
       return;
@@ -142,7 +144,7 @@ function Contactos() {
     emailjs
       .send(serviceID, templateID, templateParams, publicKey)
       .then(() => {
-        toast.success("Mensagem enviada com sucesso!", {
+        toast.success(t("contact.success"), {
           position: "top-right",
         });
         resetForm();
@@ -154,7 +156,7 @@ function Contactos() {
         );
       })
       .catch(() => {
-        toast.error("Erro ao enviar mensagem. Tente novamente.", {
+        toast.error(t("contact.error"), {
           position: "top-right",
         });
       })
@@ -170,15 +172,15 @@ function Contactos() {
 
   return (
     <>
-      <HeroSection title="CONTACTOS" />
+      <HeroSection title={t("contact.hero")} />
       <Container className="contactos-container">
         <Row className="contact-content">
           <Col md={8} className="contact-form">
-            <h2>Entre em contacto</h2>
+            <h2>{t("contact.title")}</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formNome">
                 <Form.Label>
-                  Nome <span className="required">*</span>
+                  {t("contact.name")} <span className="required">*</span>
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -197,7 +199,7 @@ function Contactos() {
                 <Col md={6}>
                   <Form.Group controlId="formEmail">
                     <Form.Label>
-                      Email <span className="required">*</span>
+                      {t("contact.email")} <span className="required">*</span>
                     </Form.Label>
                     <Form.Control
                       type="email"
@@ -218,7 +220,7 @@ function Contactos() {
                 <Col md={6}>
                   <Form.Group controlId="formTelefone">
                     <Form.Label>
-                      Telefone <span className="required">*</span>
+                      {t("contact.phone")} <span className="required">*</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
@@ -239,7 +241,7 @@ function Contactos() {
               </Row>
               <Form.Group controlId="formMensagem">
                 <Form.Label>
-                  Mensagem <span className="required">*</span>
+                  {t("contact.message")} <span className="required">*</span>
                 </Form.Label>
                 <Form.Control
                   as="textarea"
@@ -273,7 +275,7 @@ function Contactos() {
                 disabled={isSending || cooldown}
                 aria-busy={isSending}
               >
-                {isSending ? "A enviar..." : cooldown ? "Enviado" : "Enviar"}
+                {isSending ? t("contact.sending") : cooldown ? t("contact.sent") : t("contact.send")}
               </Button>
 
               <Button
@@ -282,13 +284,13 @@ function Contactos() {
                 onClick={() => handleClear()}
                 disabled={isSending}
               >
-                Limpar
+                {t("contact.clear")}
               </Button>
             </Form>
           </Col>
           <Col md={4} className="contact-info">
             <div>
-              <h2>Contactos</h2>
+              <h2>{t("contact.contacts")}</h2>
               <p>
                 <FaPhone /> <a href="tel:+351227441656">+351 227 441 656</a>
               </p>
@@ -300,8 +302,7 @@ function Contactos() {
                 <a href="mailto:geral@condolitoral.pt">geral@condolitoral.pt</a>
               </p>
               <p>
-                <FaMapMarkerAlt /> Rua Santa Maria nº 999 loja 3, 4535 - 401
-                Santa Maria de lamas
+                <FaMapMarkerAlt /> {t("contact.address")}
               </p>
             </div>
           </Col>
