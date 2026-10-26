@@ -6,12 +6,6 @@
    ========================================================================== */
 
 :root {
-  --sh-red: #ff1b1e; /* cor da marca (indicadores, ícones) */
-  --sh-red-strong: #d6101a; /* texto/botões – contraste AA sobre branco */
-  --sh-red-dark: #b50d15;
-  --sh-text: #1f2430;
-  --sh-muted: #4b5563;
-
   --sh-topbar-h: 0px;
   --sh-bar-h: 64px;
   /* Altura inicial do header (útil para páginas que usem 100vh - header) */
@@ -180,7 +174,7 @@
 }
 
 .site-header__toggle:hover {
-  background: rgba(214, 16, 26, 0.08);
+  background: var(--color-brand-active);
 }
 
 .site-header__toggle-bar {
@@ -242,7 +236,7 @@
     max(24px, env(safe-area-inset-bottom));
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: #fff;
+  background: var(--color-surface);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
@@ -302,13 +296,13 @@
 
 .site-header__link:hover {
   color: var(--sh-red-strong);
-  background: rgba(214, 16, 26, 0.06);
+  background: var(--color-brand-hover);
   text-decoration: none !important;
 }
 
 .site-header__link.is-active {
   color: var(--sh-red-strong);
-  background: rgba(214, 16, 26, 0.08);
+  background: var(--color-brand-active);
 }
 
 /* Indicador da página atual (mobile: barra lateral) */
@@ -337,7 +331,7 @@
   padding: 16px 24px;
   border-radius: 999px;
   background: var(--sh-red-strong);
-  color: #fff;
+  color: var(--color-surface);
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
@@ -351,7 +345,7 @@
 
 .site-header__cta:hover {
   background: var(--sh-red-dark);
-  color: #fff;
+  color: var(--color-surface);
   transform: translateY(-1px);
   box-shadow: 0 12px 22px -10px rgba(214, 16, 26, 0.7);
 }
@@ -362,7 +356,7 @@
 
 .site-header__cta.is-active {
   background: var(--sh-red-dark);
-  color: #fff;
+  color: var(--color-surface);
   box-shadow: 0 0 0 3px rgba(255, 27, 30, 0.25);
 }
 

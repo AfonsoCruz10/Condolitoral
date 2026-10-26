@@ -2,14 +2,14 @@
   position: relative;
   display: grid;
   min-height: 280px;
-  padding: 0px;
+  padding: 0;
   place-items: center;
   text-align: center;
-  background-image: url("../../Assets/predios.jpg"); /* Ajuste conforme necessário */
+  background-image: url("../../Assets/predios.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: white;
+  color: var(--color-surface);
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--color-overlay);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
@@ -29,12 +29,12 @@
   max-width: 760px;
   flex-direction: column;
   align-items: center;
-  padding: 32px 20px;
-  color: #fff;
+  padding: var(--space-8) var(--space-5);
+  color: var(--color-surface);
   text-align: center;
 }
 
 .hero.contact-section h2 {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
   font-size: clamp(1.6rem, 4vw, 2.5rem);
 }
