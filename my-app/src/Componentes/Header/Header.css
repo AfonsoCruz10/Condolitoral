@@ -72,6 +72,10 @@
   color: var(--sh-red-strong);
 }
 
+.site-topbar .language-switcher {
+  color: var(--sh-muted);
+}
+
 /* --------------------------------------------------------------------------
    Header (sticky + vidro fosco)
    O desfoque está num pseudo-elemento: um backdrop-filter diretamente no
@@ -386,6 +390,10 @@
   color: var(--sh-red);
 }
 
+.site-header__contact .language-switcher {
+  margin-top: 8px;
+}
+
 /* --------------------------------------------------------------------------
    Navegação – DESKTOP: links em linha + CTA à direita
    -------------------------------------------------------------------------- */
@@ -456,7 +464,8 @@
    -------------------------------------------------------------------------- */
 .site-header a:focus-visible,
 .site-header button:focus-visible,
-.site-topbar a:focus-visible {
+.site-topbar a:focus-visible,
+.site-topbar button:focus-visible {
   outline: 2px solid var(--sh-red-strong);
   outline-offset: 2px;
 }

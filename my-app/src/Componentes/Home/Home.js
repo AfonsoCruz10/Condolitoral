@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   FaFileInvoiceDollar,
   FaPhone,
@@ -29,6 +30,7 @@ function ServiceCard({ icon: Icon, title, description }) {
 
 function Home() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <main>
@@ -36,16 +38,14 @@ function Home() {
       <section className="home-hero" aria-labelledby="home-title">
         <div className="hero-overlay"></div>
         <div className="home-hero__content">
-          <p className="eyebrow">Administração de condomínios</p>
-          <h1 id="home-title">Experiência e proximidade para o seu condomínio.</h1>
-          <p>
-            Gestão profissional, transparente e próxima há mais de 20 anos.
-          </p>
+          <p className="eyebrow">{t("home.eyebrow")}</p>
+          <h1 id="home-title">{t("home.title")}</h1>
+          <p>{t("home.subtitle")}</p>
           <button
             className="hero-button"
             onClick={() => navigate("/orcamento")}
           >
-            <FaFileInvoiceDollar aria-hidden="true" /> Pedir orçamento
+            <FaFileInvoiceDollar aria-hidden="true" /> {t("home.quote")}
           </button>
         </div>
       </section>
@@ -53,57 +53,52 @@ function Home() {
       {/* SEÇÃO APRESENTAÇÃO */}
       <section className="presentation" aria-labelledby="presentation-title">
         <div className="content-container">
-        <p className="eyebrow">A nossa experiência</p>
-        <h2 id="presentation-title">Estamos aqui para o servir</h2>
-        <p>
-          A Condolitoral é uma empresa especializada na administração de
-          condomínios, atuando nos concelhos de Vila Nova de Gaia, Espinho e
-          Santa Maria da Feira. Nossa equipa tem mais de 20 anos de experiência,
-          garantindo um serviço de qualidade.
-        </p>
+        <p className="eyebrow">{t("home.experience")}</p>
+        <h2 id="presentation-title">{t("home.presentationTitle")}</h2>
+        <p>{t("home.presentation")}</p>
         </div>
       </section>
 
       {/* SEÇÃO SERVIÇOS */}
       <section className="services" aria-labelledby="services-title">
         <div className="content-container">
-        <p className="eyebrow">O que fazemos</p>
-        <h2 id="services-title">Serviços para uma gestão tranquila</h2>
+        <p className="eyebrow">{t("home.whatWeDo")}</p>
+        <h2 id="services-title">{t("home.servicesTitle")}</h2>
         <div className="service-container">
           <ServiceCard
             icon={FaBuilding}
-            title="Administração Completa"
-            description="Gerimos o seu condomínio de forma eficiente e transparente."
+            title={t("home.services.administration.0")}
+            description={t("home.services.administration.1")}
           />
           <ServiceCard
             icon={FaBalanceScale}
-            title="Apoio Jurídico aos Condóminos"
-            description="Suporte jurídico para os moradores do condomínio."
+            title={t("home.services.legal.0")}
+            description={t("home.services.legal.1")}
           />
           <ServiceCard
             icon={FaMoneyCheckAlt}
-            title="Consultoria Financeira"
-            description="Controlo financeiro e prestação de contas detalhada."
+            title={t("home.services.finance.0")}
+            description={t("home.services.finance.1")}
           />
           <ServiceCard
             icon={FaFileInvoiceDollar}
-            title="Apresentação de Orçamento"
-            description="Apresentação de orçamento detalhado para o seu condomínio."
+            title={t("home.services.budget.0")}
+            description={t("home.services.budget.1")}
           />
           <ServiceCard
             icon={FaClipboardCheck}
-            title="Controlo e Acompanhamento dos Serviços"
-            description="Monitoramento contínuo dos serviços prestados."
+            title={t("home.services.monitoring.0")}
+            description={t("home.services.monitoring.1")}
           />
           <ServiceCard
             icon={FaBroom}
-            title="Limpezas Semanais"
-            description="Serviços de limpeza semanal para manter o condomínio impecável."
+            title={t("home.services.cleaning.0")}
+            description={t("home.services.cleaning.1")}
           />
           <ServiceCard
             icon={FaTools}
-            title="Pequenos Serviços de Manutenção / Conservação"
-            description="Realização de pequenos reparos e manutenção."
+            title={t("home.services.maintenance.0")}
+            description={t("home.services.maintenance.1")}
           />
         </div>
         </div>
@@ -113,12 +108,12 @@ function Home() {
       <section className="hero contact-section" aria-labelledby="contact-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h2 id="contact-title">Tem interesse nos nossos serviços?</h2>
+          <h2 id="contact-title">{t("home.contactQuestion")}</h2>
           <button
             className="hero-button"
             onClick={() => navigate("/contactos")}
           >
-            <FaPhone aria-hidden="true" /> CONTACTE-NOS
+            <FaPhone aria-hidden="true" /> {t("home.contactButton")}
           </button>
           </div>
         </section>

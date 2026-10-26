@@ -1,0 +1,73 @@
+{
+  "language": "Idioma",
+  "languages": { "pt": "PT", "en": "EN" },
+  "nav": {
+    "home": "Início",
+    "company": "Empresa",
+    "legislation": "Legislação",
+    "contacts": "Contactos",
+    "quote": "Pedido de orçamento",
+    "menu": "Menu principal",
+    "main": "Navegação principal"
+  },
+  "header": { "logoAlt": "Condolitoral – Administração de Condomínios" },
+  "home": {
+    "eyebrow": "Administração de condomínios",
+    "title": "Experiência e proximidade para o seu condomínio.",
+    "subtitle": "Gestão profissional, transparente e próxima há mais de 20 anos.",
+    "quote": "Pedir orçamento",
+    "experience": "A nossa experiência",
+    "presentationTitle": "Estamos aqui para o servir",
+    "presentation": "A Condolitoral é uma empresa especializada na administração de condomínios, atuando nos concelhos de Vila Nova de Gaia, Espinho e Santa Maria da Feira. Nossa equipa tem mais de 20 anos de experiência, garantindo um serviço de qualidade.",
+    "whatWeDo": "O que fazemos",
+    "servicesTitle": "Serviços para uma gestão tranquila",
+    "contactQuestion": "Tem interesse nos nossos serviços?",
+    "contactButton": "CONTACTE-NOS",
+    "services": {
+      "administration": ["Administração Completa", "Gerimos o seu condomínio de forma eficiente e transparente."],
+      "legal": ["Apoio Jurídico aos Condóminos", "Suporte jurídico para os moradores do condomínio."],
+      "finance": ["Consultoria Financeira", "Controlo financeiro e prestação de contas detalhada."],
+      "budget": ["Apresentação de Orçamento", "Apresentação de orçamento detalhado para o seu condomínio."],
+      "monitoring": ["Controlo e Acompanhamento dos Serviços", "Monitoramento contínuo dos serviços prestados."],
+      "cleaning": ["Limpezas Semanais", "Serviços de limpeza semanal para manter o condomínio impecável."],
+      "maintenance": ["Pequenos Serviços de Manutenção / Conservação", "Realização de pequenos reparos e manutenção."]
+    }
+  },
+  "company": {
+    "hero": "EMPRESA",
+    "title": "Quem somos",
+    "paragraphs": [
+      "A Condolitoral administração de condomínio é uma empresa de Administração de Condomínios com mais de 20 anos de actividade a actuar essencialmente nos concelhos de Vila Nova de Gaia, Espinho, Santa Maria da Feira. Temos 5 colaboradores divididos em serviços externos e internos. Nas nossas relações comerciais privilegiamos sempre o contacto pessoal e de proximidade. Temos acordos preferenciais com prestadores de serviços em todas as áreas permitem-nos também oferecer aos condóminos um atendimento rápido e eficiente.",
+      "Forte experiência em reabilitação de edifícios.",
+      "A qualidade dos nossos serviços e a nossa experiência são reconhecidos pelos nossos condóminos.",
+      "Agradecemos o seu contato para a administração do seu edifício."
+    ]
+  },
+  "legislation": {
+    "hero": "LEGISLAÇÃO",
+    "title": "Capítulo VI - Propriedade horizontal",
+    "subtitle": "Direitos e deveres dos condóminos (Artigos 1414.º a 1438.º-A do Código Civil)",
+    "sections": [
+      ["Secção I - Disposições Gerais (Art. 1414º a 1416º)", ["Artigo 1414º – Principio Geral", "Artigo 1415º – Objecto", "Artigo 1416º – Falta de Requisitos Legais"]],
+      ["Secção II - Constituição (Art. 1417º a 1419º)", ["Artigo 1417º - Principio Geral", "Artigo 1418º – Conteúdo do Título Constitutivo", "Artigo 1419º – Modificação do Titulo"]],
+      ["Secção III - Direitos e encargos dos Condóminos (Art. 1420º A 1429º-A)", ["Artigo 1420º – Direitos dos Condóminos", "Artigo 1421º – Partes Comuns do Prédio", "Artigo 1422º – Limitações ao Exercício dos Direitos", "Artigo 1422º-A – Junção e Divisão de Fracções Autónomas", "Artigo 1423º – Direitos de Preferência e de Divisão", "Artigo 1424º – Encargos de Conservação e Fruição", "Artigo 1425º - Inovações", "Artigo 1426º – Encargos Com Inovações", "Artigo 1427º – Reparações Indispensáveis e Urgentes", "Artigo 1428º – Destruição do Edifício", "Artigo 1429º – Seguro Obrigatório", "Artigo 1429º-A – Regulamento do Condomínio"]],
+      ["Secção IV - Administração das partes comuns do edifício (Art. 1430º a 1438º-A)", ["Artigo 1430º – Orgãos Administrativos", "Artigo 1431º – Assembleia dos condóminos", "Artigo 1432º – Convocação e Funcionamento da Assembleia", "Artigo 1433º – Impugnação das Deliberações", "Artigo 1434º – Compromisso Arbitral", "Artigo 1435º – Administrador", "Artigo 1435º-A – Administrador Provisório", "Artigo 1436º – Funções do Administrador", "Artigo 1437º – Legalidade do Administrador", "Artigo 1438º – Recurso dos Actos do Administrador", "Artigo 1438º-A – Propriedade Horizontal de conjuntos de Edifícios"]]
+    ]
+  },
+  "contact": {
+    "hero": "CONTACTOS", "title": "Entre em contacto", "contacts": "Contactos",
+    "name": "Nome", "email": "Email", "phone": "Telefone", "message": "Mensagem",
+    "send": "Enviar", "sending": "A enviar...", "sent": "Enviado", "clear": "Limpar",
+    "address": "Rua Santa Maria nº 999 loja 3, 4535 - 401 Santa Maria de lamas",
+    "invalidForm": "Não foi possível validar o formulário.", "wait": "Aguarde alguns segundos antes de enviar o formulário.",
+    "requiredFields": "Por favor, preencha todos os campos obrigatórios.", "unavailable": "O formulário está temporariamente indisponível.",
+    "success": "Mensagem enviada com sucesso!", "error": "Erro ao enviar mensagem. Tente novamente.",
+    "errors": { "nameRequired": "Preencha o nome!", "nameLength": "O nome deve ter entre 2 e 80 caracteres.", "nameInvalid": "Indique um nome válido.", "emailRequired": "Preencha o e-mail!", "emailInvalid": "Indique um e-mail válido!", "phoneRequired": "Preencha o telefone!", "phoneInvalid": "Indique um telefone válido.", "messageRequired": "Digite sua mensagem!", "messageLength": "A mensagem deve ter entre 10 e 2000 caracteres.", "maxLength": "Este campo excede o limite permitido." }
+  },
+  "quote": {
+    "hero": "PEDIDO DE ORÇAMENTO", "personal": "Dados Pessoais", "general": "Informação Geral do Condomínio",
+    "condoName": "Nome do Condomínio", "address": "Morada", "locality": "Localidade", "buildingAge": "Idade do Edifício", "units": "Nº de Frações", "floors": "Nº de Pisos", "otherInfo": "Outras Informações",
+    "success": "Pedido de Orçamento enviado com sucesso!", "error": "Erro ao enviar pedido de orçamento. Tente novamente."
+  },
+  "footer": { "services": "Nossos Serviços", "budget": "Apresentação de orçamento", "monitoring": "Controlo e acompanhamento dos serviços", "cleaning": "Limpezas semanais", "legal": "Apoio jurídico aos condóminos", "maintenance": "Pequenos serviços de manutenção", "hours": "Horário de Funcionamento", "weekdays": "Segunda a Sexta:", "schedule": "9:00h às 12:00h e 14:00h às 19:00h", "contact": "Contacte-nos", "rights": "Todos os direitos reservados. Desenvolvido por" }
+}

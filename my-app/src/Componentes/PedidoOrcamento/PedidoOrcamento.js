@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import HeroSection from "../HeroSection/HeroSection";
 import ContactSection from "../ContactSection/ContactSection";
@@ -8,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./PedidoOrcamento.css";
 
 function PedidoOrcamento() {
+  const { t } = useTranslation();
   const formStartedAt = useRef(Date.now());
   const cooldownTimer = useRef(null);
   const [formData, setFormData] = useState({
@@ -46,25 +48,25 @@ function PedidoOrcamento() {
     const phone = formData.telefone.trim();
     const email = formData.email.trim().toLowerCase();
 
-    if (!name) newErrors.nome = "Preencha o nome!";
+    if (!name) newErrors.nome = t("contact.errors.nameRequired");
     else if (name.length < 2 || name.length > 80) {
-      newErrors.nome = "O nome deve ter entre 2 e 80 caracteres.";
+      newErrors.nome = t("contact.errors.nameLength");
     } else if (!/^[\p{L}][\p{L}\s.'-]*$/u.test(name)) {
-      newErrors.nome = "Indique um nome válido.";
+      newErrors.nome = t("contact.errors.nameInvalid");
     }
 
-    if (!phone) newErrors.telefone = "Preencha o telefone!";
+    if (!phone) newErrors.telefone = t("contact.errors.phoneRequired");
     else if (
       phone.length > 25 ||
       !/^[+]?[\d\s().-]+$/.test(phone) ||
       phone.replace(/\D/g, "").length < 7
     ) {
-      newErrors.telefone = "Indique um telefone válido.";
+      newErrors.telefone = t("contact.errors.phoneInvalid");
     }
 
-    if (!email) newErrors.email = "Preencha o e-mail!";
+    if (!email) newErrors.email = t("contact.errors.emailRequired");
     else if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Indique um e-mail válido!";
+      newErrors.email = t("contact.errors.emailInvalid");
     }
 
     const maxLengths = {
@@ -79,7 +81,7 @@ function PedidoOrcamento() {
 
     Object.entries(maxLengths).forEach(([field, maxLength]) => {
       if (formData[field].trim().length > maxLength) {
-        newErrors[field] = "Este campo excede o limite permitido.";
+        newErrors[field] = t("contact.errors.maxLength");
       }
     });
 
@@ -111,21 +113,21 @@ function PedidoOrcamento() {
     if (loading || cooldown) return;
 
     if (formData.website.trim()) {
-      toast.error("Não foi possível validar o formulário.", {
+      toast.error(t("contact.invalidForm"), {
         position: "top-right",
       });
       return;
     }
 
     if (Date.now() - formStartedAt.current < 3000) {
-      toast.info("Aguarde alguns segundos antes de enviar o formulário.", {
+      toast.info(t("contact.wait"), {
         position: "top-right",
       });
       return;
     }
 
     if (!validateForm()) {
-      toast.info("Por favor, preencha todos os campos obrigatórios.", {
+      toast.info(t("contact.requiredFields"), {
         position: "top-right",
       });
       return;
@@ -137,7 +139,7 @@ function PedidoOrcamento() {
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY?.trim();
 
     if (!serviceID || !templateID || !publicKey) {
-      toast.error("O formulário está temporariamente indisponível.", {
+      toast.error(t("contact.unavailable"), {
         position: "top-right",
       });
       return;
@@ -161,7 +163,7 @@ function PedidoOrcamento() {
     emailjs
       .send(serviceID, templateID, templateParams, publicKey)
       .then(() => {
-        toast.success("Pedido de Orçamento enviado com sucesso!", {
+        toast.success(t("quote.success"), {
           position: "top-right",
         });
         resetForm();
@@ -173,7 +175,7 @@ function PedidoOrcamento() {
         );
       })
       .catch(() => {
-        toast.error("Erro ao enviar pedido de orçamento. Tente novamente.", {
+        toast.error(t("quote.error"), {
           position: "top-right",
         });
       })
@@ -190,17 +192,17 @@ function PedidoOrcamento() {
   return (
     <div>
       {/* HERO SECTION */}
-      <HeroSection title="PEDIDO DE ORÇAMENTO" />
+      <HeroSection title={t("quote.hero")} />
 
       {/* PEDIDO DE ORÇAMENTO CONTAINER */}
       <Container className="pedido-orcamento-container">
-        <h1>Dados Pessoais</h1>
+        <h1>{t("quote.personal")}</h1>
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col md={6}>
               <Form.Group controlId="nome">
                 <Form.Label>
-                  Nome <span className="required">*</span>
+                  {t("contact.name")} <span className="required">*</span>
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -225,7 +227,7 @@ function PedidoOrcamento() {
             <Col md={6}>
               <Form.Group controlId="telefone">
                 <Form.Label>
-                  Telefone <span className="required">*</span>
+                  {t("contact.phone")} <span className="required">*</span>
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -256,7 +258,7 @@ function PedidoOrcamento() {
             <Col md={12}>
               <Form.Group controlId="email">
                 <Form.Label>
-                  Email <span className="required">*</span>
+                  {t("contact.email")} <span className="required">*</span>
                 </Form.Label>
                 <Form.Control
                   type="email"
@@ -284,11 +286,11 @@ function PedidoOrcamento() {
             </Col>
           </Row>
 
-          <h1>Informação Geral do Condomínio</h1>
+          <h1>{t("quote.general")}</h1>
           <Row>
             <Col md={6}>
               <Form.Group controlId="nomeCondominio">
-                <Form.Label>Nome do Condomínio</Form.Label>
+                <Form.Label>{t("quote.condoName")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="nomeCondominio"
@@ -300,7 +302,7 @@ function PedidoOrcamento() {
             </Col>
             <Col md={6}>
               <Form.Group controlId="morada">
-                <Form.Label>Morada</Form.Label>
+                <Form.Label>{t("quote.address")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="morada"
@@ -314,7 +316,7 @@ function PedidoOrcamento() {
           <Row>
             <Col md={6}>
               <Form.Group controlId="localidade">
-                <Form.Label>Localidade</Form.Label>
+                <Form.Label>{t("quote.locality")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="localidade"
@@ -326,7 +328,7 @@ function PedidoOrcamento() {
             </Col>
             <Col md={6}>
               <Form.Group controlId="idadeEdificio">
-                <Form.Label>Idade do Edifício</Form.Label>
+                <Form.Label>{t("quote.buildingAge")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="idadeEdificio"
@@ -340,7 +342,7 @@ function PedidoOrcamento() {
           <Row>
             <Col md={6}>
               <Form.Group controlId="numFracoes">
-                <Form.Label>Nº de Frações</Form.Label>
+                <Form.Label>{t("quote.units")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="numFracoes"
@@ -352,7 +354,7 @@ function PedidoOrcamento() {
             </Col>
             <Col md={6}>
               <Form.Group controlId="numPisos">
-                <Form.Label>Nº de Pisos</Form.Label>
+                <Form.Label>{t("quote.floors")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="numPisos"
@@ -366,7 +368,7 @@ function PedidoOrcamento() {
           <Row>
             <Col md={12}>
               <Form.Group controlId="outrasInformacoes">
-                <Form.Label>Outras Informações</Form.Label>
+                <Form.Label>{t("quote.otherInfo")}</Form.Label>
                 <Form.Control
                   as="textarea"
                   name="outrasInformacoes"
@@ -394,7 +396,7 @@ function PedidoOrcamento() {
             disabled={loading || cooldown}
             aria-busy={loading}
           >
-            {loading ? "A enviar..." : cooldown ? "Enviado" : "Enviar"}
+            {loading ? t("contact.sending") : cooldown ? t("contact.sent") : t("contact.send")}
           </Button>
           <Button
             variant="secondary"
