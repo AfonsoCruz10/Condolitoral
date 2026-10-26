@@ -1,70 +1,95 @@
-/* CONTAINER DA PÁGINA */
 .not-found {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: url("../../Assets/predios.jpg"); /* Imagem de fundo */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 16px 8px;
+  overflow: hidden;
+  isolation: isolate;
+  background: url("../../Assets/predios.jpg") center / cover;
+  color: var(--color-text);
+  text-align: center;
+  animation: not-found-fade-in 0.5s ease both;
+}
+
+.not-found .hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.not-found-content {
+  z-index: 1;
+  width: min(100%, 620px);
+  padding: clamp(28px, 5vw, 52px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-md);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  animation: not-found-slide-in 0.55s 0.08s ease both;
+}
+
+.not-found-image {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin: 0 auto 28px;
+}
+
+.not-found h1 {
+  margin: 0 0 12px;
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.not-found p {
+  max-width: 46ch;
+  margin: 0 auto 28px;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.not-found-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out; /* Efeito de transição */
-}
-
-/* CONTEÚDO CENTRAL */
-.not-found-content {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 100%;
-  z-index: 2;
-  animation: slideIn 1s ease-in-out;
-}
-
-/* IMAGEM */
-.not-found-image {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-/* TÍTULO */
-.not-found h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* PARÁGRAFO */
-.not-found p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #6c757d;
-}
-
-/* BOTÃO DE RETORNO */
-.not-found-button {
-  background: #ff1b1e;
-  color: white;
-  padding: 12px 30px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 5px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: var(--color-surface);
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .not-found-button:hover {
-  background: #c91517;
+  background: var(--color-brand-dark);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
-/* ANIMAÇÃO */
-@keyframes fadeIn {
+.not-found-button:active {
+  transform: translateY(0);
+}
+
+.not-found-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring), var(--shadow-sm);
+}
+
+@keyframes not-found-fade-in {
   from {
     opacity: 0;
   }
@@ -73,29 +98,44 @@
   }
 }
 
-@keyframes slideIn {
+@keyframes not-found-slide-in {
   from {
-    transform: translateY(30px);
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
-    opacity: 1;
   }
 }
 
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-  .not-found h1 {
-    font-size: 2rem;
+@media (max-width: 576px) {
+  .not-found {
+    padding: 20px 16px;
+    background-attachment: scroll;
   }
 
-  .not-found p {
-    font-size: 1.1rem;
+  .not-found-content {
+    padding: 28px 20px;
+  }
+
+  .not-found-image {
+    width: min(100%, 220px);
+    margin-bottom: 22px;
   }
 
   .not-found-button {
-    font-size: 1rem;
-    padding: 10px 20px;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found,
+  .not-found-content {
+    animation: none;
+  }
+
+  .not-found-button {
+    transition: none;
   }
 }
