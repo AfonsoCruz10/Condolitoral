@@ -1,7 +1,8 @@
 .home-hero {
   position: relative;
   display: grid;
-  min-height: min(720px, calc(100svh - var(--header-h, 64px)));
+  min-height: calc(100svh - var(--header-h, 64px));
+  /*min-height: min(720px, calc(100svh - var(--header-h, 64px)))*/
   isolation: isolate;
   place-items: center;
   padding: 80px 20px;
@@ -162,11 +163,5 @@
 @media (min-width: 992px) {
   .service-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 991px) {
-  .home-hero {
-    background-attachment: scroll;
   }
 }
