@@ -2,8 +2,8 @@
   position: fixed;
   bottom: max(20px, env(safe-area-inset-bottom));
   right: 20px;
-  background-color: #ff1b1e;
-  color: white;
+  background-color: var(--color-brand);
+  color: var(--color-surface);
   border: none;
   display: grid;
   width: 48px;
@@ -14,13 +14,13 @@
   border-radius: 50%;
   font-size: 20px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: opacity var(--transition-base), transform var(--transition-base);
   z-index: 1000;
 }
 
 .scroll-to-top:hover {
-  background-color: #c91517;
+  background-color: var(--color-brand-dark);
 }
 
 .scroll-to-top:active {

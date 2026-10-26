@@ -5,10 +5,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--color-overlay);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  transition: backdrop-filter 0.3s ease-in-out;
+  transition: backdrop-filter var(--transition-base);
 }
 
 /* CONTEÚDO CENTRALIZADO */
@@ -22,5 +22,5 @@
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeIn 1s ease-in-out forwards;
+  animation: fade-in 1s ease-in-out forwards;
 }

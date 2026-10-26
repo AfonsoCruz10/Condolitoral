@@ -1,12 +1,12 @@
 footer {
   padding: 56px 0 28px;
-  background: #212529;
-  color: #fff;
+  background: var(--color-dark-surface);
+  color: var(--color-surface);
 }
 
 footer h5 {
   margin-bottom: 18px;
-  color: #fff;
+  color: var(--color-surface);
   font-size: 1.1rem;
 }
 
@@ -27,7 +27,7 @@ footer ul {
 
 footer li,
 footer p {
-  color: #cbd5e1;
+  color: var(--color-dark-muted);
   line-height: 1.7;
 }
 
@@ -36,13 +36,13 @@ footer li {
 }
 
 footer a {
-  color: #fff;
+  color: var(--color-surface);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 footer a:hover {
-  color: #d6101a;
+  color: var(--color-brand);
   text-decoration: none;
 }
 
@@ -61,7 +61,7 @@ footer p svg {
   width: 16px;
   height: 16px;
   margin: 0;
-  color: #d6101a;
+  color: var(--color-brand);
 }
 
 .footer-container {

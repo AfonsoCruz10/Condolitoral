@@ -30,6 +30,7 @@
 .pedido-orcamento-container .btn-danger,
 .contact-form .btn-danger {
   background: var(--color-brand);
+  border-color: var(--color-brand);
 }
 
 .pedido-orcamento-container .btn-danger:hover,
