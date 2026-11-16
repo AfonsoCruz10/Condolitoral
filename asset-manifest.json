@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3e16a8f3.css",
+    "main.js": "/static/js/main.4a426a07.js",
+    "static/js/488.8943be15.chunk.js": "/static/js/488.8943be15.chunk.js",
+    "static/media/predios.jpg": "/static/media/predios.d3a386de451655e58e32.jpg",
+    "static/media/logo.png": "/static/media/logo.288d4cd75ae7958075a9.png",
+    "index.html": "/index.html",
+    "main.3e16a8f3.css.map": "/static/css/main.3e16a8f3.css.map",
+    "main.4a426a07.js.map": "/static/js/main.4a426a07.js.map",
+    "488.8943be15.chunk.js.map": "/static/js/488.8943be15.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e16a8f3.css",
+    "static/js/main.4a426a07.js"
+  ]
+}
